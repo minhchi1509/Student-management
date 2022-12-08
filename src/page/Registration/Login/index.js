@@ -2,10 +2,9 @@ import { Grid } from "@mui/material";
 import { Form, Formik } from "formik";
 import FormInput from "../../../component/FormUI/FormInput";
 import * as Yup from 'yup';
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
-
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 const INITIAL_LOGIN_FORM = {
     email: '',
     password: '',
@@ -21,22 +20,22 @@ const LOGIN_FORM_VALIDATION = Yup.object({
 
 export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
-    const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
     const navigate = useNavigate();
+    const { allUsers } = useSelector(state => state.user);
 
-    const handleLogin = async (email, password) => {
-        try {
-            setLoading(true);
-            await login(email, password);
-            setLoading(false);
+    useEffect(() => {
+        if (JSON.parse(localStorage.getItem('currentUser')))
             navigate('/');
+    }, [])
 
-        } catch (error) {
-            const err = error.code === 'auth/user-not-found' ? 'Email bạn đã nhập chưa từng được đăng ký tài khoản!' : 'Mật khẩu không đúng, vui lòng kiểm tra lại!';
-            setErrorMessage(err);
-            setLoading(false);
-        }
+    const handleLogin = (email, password) => {
+        const targetUser = allUsers.find(user => user.email === email);
+        if (!targetUser)
+            return setErrorMessage('Email chưa từng được đăng ký tài khoản!');
+        if (targetUser.password !== password)
+            return setErrorMessage('Mật khẩu không đúng. Vui lòng nhập lại!');
+        localStorage.setItem('currentUser', targetUser.id);
+        navigate('/');
     }
 
     return (
@@ -64,10 +63,9 @@ export default function Login() {
                                 </Grid>
                             </Grid>
                             <p className="text-center text-red-500 text-sm font-[500] mt-2">{errorMessage}</p>
-                            <button type="submit" className="w-full h-12 rounded-md border-none bg-blue-500 hover:bg-blue-600 mt-4 text-white font-[700] text-[20px] duration-300 disabled:opacity-50" disabled={loading}>Đăng nhập</button>
+                            <button type="submit" className="w-full h-12 rounded-md border-none bg-blue-500 hover:bg-blue-600 mt-4 text-white font-[700] text-[20px] duration-300 disabled:opacity-50">Đăng nhập</button>
                         </Form>
                     </Formik>
-                    <Link to='/forgotpassword' className='mt-4 text-blue-500 font-[500] text-[14px] no-underline hover:underline mb-4'>Quên mật khẩu</Link>
                 </div>
 
                 {/* Footer */}

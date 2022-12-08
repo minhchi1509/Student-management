@@ -1,42 +1,49 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AuthContextProvider from "./context/AuthContext";
 import Login from "./page/Registration/Login";
 import Signup from "./page/Registration/Signup";
-import ForgotPassword from "./page/Registration/ForgotPassword";
 import Home from "./page/Home";
 import { createTheme, ThemeProvider } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getAllUsers } from "./redux/features/userSlice";
 
 function App() {
-  const currentMode = useSelector(state => state.mode.currentMode);
+  const [isLoading, setLoading] = useState(false);
+  const { currentMode } = useSelector(state => state.mode);
   const theme = createTheme({
     palette: {
       mode: currentMode,
     }
   })
+  const dispatch = useDispatch();
+  const getData = async () => {
+    setLoading(true);
+    await dispatch(getAllUsers());
+    setLoading(false);
+  }
+  useEffect(() => {
+    getData();
+  }, [])
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={`${currentMode}`}>
-        <div className="min-h-screen bg-[#F0F2F5] dark:bg-[#1A2027]">
-          <BrowserRouter>
-            <AuthContextProvider>
+    !isLoading ? (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className={`${currentMode}`}>
+          <div className="min-h-screen bg-[#F0F2F5] dark:bg-[#1A2027]">
+            <BrowserRouter>
               <Routes>
                 <Route element={<Login />} path='/login' />
                 <Route element={<Signup />} path='/signup' />
-                <Route element={<ForgotPassword />} path='/forgotpassword' />
-                <Route element={<Home />} path='/'>
-                  <Route element={<></>} path='/setting/*' />
-                  <Route element={<></>} path='/support' />
-                  <Route element={<></>} path='/report' />
+                <Route element={<Home />} path='/*'>
                 </Route>
               </Routes>
-            </AuthContextProvider>
-          </BrowserRouter>
+            </BrowserRouter>
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    ) : null
   );
 }
 

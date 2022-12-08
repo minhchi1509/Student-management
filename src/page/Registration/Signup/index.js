@@ -6,12 +6,11 @@ import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../context/AuthContext';
-import { useDispatch } from 'react-redux';
-import { register } from '../../../redux/features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import Notification from '../../../component/FormUI/Notification';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { register } from '../../../redux/features/userSlice';
 
 const INITIAL_FORM_STATE = {
     firstName: '',
@@ -41,22 +40,16 @@ const FORM_VALIDATION = Yup.object({
 
 export default function Signup() {
     const [success, setSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const { signUp } = useAuth();
+    const { loading } = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     const handleRegister = async (values) => {
-        try {
-            setLoading(true);
-            await signUp(values.email, values.password);
-            dispatch(register({
-                ...values,
-                dateOfBirth: dayjs(values.dateOfBirth).format('DD/MM/YYYY')
-            }));
-            setSuccess(true);
-        } catch (error) {
-
+        const formattedData = {
+            ...values,
+            dateOfBirth: dayjs(values.dateOfBirth).format('DD/MM/YYYY')
         }
+        await dispatch(register(formattedData));
+        setSuccess(true);
     }
 
     return (
