@@ -10,7 +10,7 @@ import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { editUser } from '../../redux/features/userSlice';
+import { editUser, getAllUsers } from '../../redux/features/userSlice';
 
 export default function EditProfile() {
     const avatarRef = useRef(null);
@@ -64,6 +64,7 @@ export default function EditProfile() {
             id: id,
             information: newInformation
         }))
+        await dispatch(getAllUsers());
     }
 
     return (
