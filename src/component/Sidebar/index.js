@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMode } from '../../redux/features/modeSlice';
 import { setCurrentUser } from '../../redux/features/userSlice';
-
 const Header = () => {
     return (
         <div className='flex items-center gap-3 mb-4'>
@@ -51,9 +50,9 @@ const Footer = () => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector(state => state.user);
 
-    const handleLogout = async () => {
+    const handleLogout = () => {
         localStorage.setItem('currentUser', null);
-        await dispatch(setCurrentUser(null));
+        dispatch(setCurrentUser(null));
         dispatch(toggleMode('light'));
         navigate('/login');
     }
@@ -63,7 +62,10 @@ const Footer = () => {
             <div className='flex flex-col items-center'>
                 <div className='w-full flex items-center gap-3 mt-10'>
                     <div className='flex-1 xl:flex-none'>
-                        <Avatar className='bg-gray-400 w-11 h-11 mx-auto xl:mx-0 scale-75 md:scale-100'>{currentUser?.lastName?.[0]}</Avatar>
+                        <Avatar
+                            className='bg-gray-400 w-10 h-10 lg:w-12 lg:h-12 mx-auto xl:mx-0 scale-75 md:scale-100'
+                            src={currentUser?.avatarImage}
+                        >{currentUser?.lastName?.[0]}</Avatar>
                     </div>
                     <div className='hidden xl:flex flex-1 items-center justify-between'>
                         <div className='leading-[20px]'>

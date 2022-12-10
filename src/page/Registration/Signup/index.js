@@ -7,7 +7,6 @@ import { Form, Formik } from 'formik';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import dayjs from 'dayjs';
 import Notification from '../../../component/FormUI/Notification';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { register } from '../../../redux/features/userSlice';
@@ -25,7 +24,7 @@ const FORM_VALIDATION = Yup.object({
     firstName: Yup.string()
         .required('Vui lòng điền Họ'),
     lastName: Yup.string()
-        .required('Vui lòng điền tên'),
+        .required('Vui lòng điền Tên'),
     email: Yup.string()
         .required('Vui lòng điền email')
         .email('Vui lòng nhập email hợp lệ'),
@@ -44,11 +43,10 @@ export default function Signup() {
     const dispatch = useDispatch();
 
     const handleRegister = async (values) => {
-        const formattedData = {
+        await dispatch(register({
             ...values,
-            dateOfBirth: dayjs(values.dateOfBirth).format('DD/MM/YYYY')
-        }
-        await dispatch(register(formattedData));
+            avatarImage: '',
+        }));
         setSuccess(true);
     }
 

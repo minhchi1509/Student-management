@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Sidebar from '../../component/Sidebar'
 import { setCurrentUser } from '../../redux/features/userSlice';
 
@@ -17,11 +17,11 @@ export default function Home() {
     return (
         <div className='container'>
             <div className='min-h-screen grid grid-cols-15'>
-                <div className='col-span-2 lg:col-span-3 bg-white dark:bg-[#1C2536]'>
+                <div className='relative z-10 col-span-2 lg:col-span-3 bg-white dark:bg-[#1C2536]'>
                     <Sidebar />
                 </div>
-                <div className='col-span-13 lg:col-span-12'>
-
+                <div className='col-span-13 lg:col-span-12 pb-10'>
+                    <Outlet />
                 </div>
             </div>
         </div>
