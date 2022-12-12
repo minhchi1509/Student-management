@@ -1,10 +1,9 @@
 import React from 'react'
 import { IconButton, Typography } from '@mui/material'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-export default function Submenu({ to, title }) {
-
+export const SubmenuDesktop = ({ to, title }) => {
     return (
         <NavLink to={to}>
             {({ isActive }) => (
@@ -18,5 +17,22 @@ export default function Submenu({ to, title }) {
                 </div>
             )}
         </NavLink>
+    )
+}
+
+export const SubmenuMobile = ({ to, title, icon }) => {
+    const navigate = useNavigate();
+    return (
+        <div className='flex flex-col gap-3 w-40 p-2 shadow-lg rounded-md bg-white dark:bg-[#454647] lg:hidden'>
+            <div
+                className='flex items-center gap-3 p-1 hover:bg-gray-200 dark:hover:bg-[#3c3c3d] rounded-md cursor-pointer'
+                onClick={() => navigate(to)}
+            >
+                <IconButton className='p-0' disableRipple>
+                    {icon}
+                </IconButton>
+                <p>{title}</p>
+            </div>
+        </div>
     )
 }

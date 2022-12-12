@@ -1,6 +1,6 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-
+import EditIcon from '@mui/icons-material/Edit';
 export const menuList = [
     {
         to: '/',
@@ -15,6 +15,7 @@ export const menuList = [
             {
                 to: 'setting/edit',
                 title: 'Edit profile',
+                icon: <EditIcon />
             },
         ]
     },

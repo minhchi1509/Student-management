@@ -4,7 +4,7 @@ import { Avatar, Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { menuList } from './menuList';
-import SidebarMenu from '../SidebarMenu';
+import SidebarMenu from './SidebarMenu';
 import DarkmodeToggle from '../DarkmodeToggle';
 import Confirmation from '../Confirmation';
 import { useRef } from 'react';
@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMode } from '../../redux/features/modeSlice';
 import { setCurrentUser } from '../../redux/features/userSlice';
+import Tippy from '@tippyjs/react/headless';
+
 const Header = () => {
     return (
         <div className='flex items-center gap-3 mb-4'>
@@ -60,26 +62,47 @@ const Footer = () => {
     return (
         <>
             <div className='flex flex-col items-center'>
-                <div className='w-full flex items-center gap-3 mt-10'>
-                    <div className='flex-1 xl:flex-none'>
-                        <Avatar
-                            className='bg-gray-400 w-10 h-10 lg:w-12 lg:h-12 mx-auto xl:mx-0 scale-75 md:scale-100'
-                            src={currentUser?.avatarImage}
-                        >{currentUser?.lastName?.[0]}</Avatar>
-                    </div>
-                    <div className='hidden xl:flex flex-1 items-center justify-between'>
-                        <div className='leading-[20px]'>
-                            <p>Welcome,</p>
-                            <Typography className='font-bold text-[20px]'>{currentUser?.lastName}</Typography>
+                <Tippy
+                    interactive
+                    render={attrs => (
+                        <div tabIndex="-1" {...attrs}>
+                            <div className='w-40 p-2 shadow-lg rounded-md bg-gray-100 dark:bg-[#454647] xl:hidden'>
+                                <div
+                                    className='flex items-center gap-3 p-1 hover:bg-gray-200 dark:hover:bg-[#303031] rounded-md cursor-pointer'
+                                    onClick={() => logoutConfirmRef.current.openConfirm()}
+                                >
+                                    <IconButton className='p-0'>
+                                        <LogoutIcon />
+                                    </IconButton>
+                                    <p>Đăng xuất</p>
+                                </div>
+                            </div>
                         </div>
-                        <IconButton
-                            className='p-0'
-                            onClick={() => logoutConfirmRef.current.openConfirm()}
-                        >
-                            <LogoutIcon />
-                        </IconButton>
+                    )}
+                    placement='bottom'
+                    trigger='click'
+                >
+                    <div className='w-full flex items-center gap-3 mt-10'>
+                        <div className='flex-1 xl:flex-none'>
+                            <Avatar
+                                className='bg-gray-400 w-10 h-10 lg:w-12 lg:h-12 mx-auto xl:mx-0 scale-75 md:scale-100 cursor-pointer'
+                                src={currentUser?.avatarImage}
+                            >{currentUser?.lastName?.[0]}</Avatar>
+                        </div>
+                        <div className='hidden xl:flex flex-1 items-center justify-between'>
+                            <div className='leading-[20px]'>
+                                <p>Welcome,</p>
+                                <Typography className='font-bold text-[20px]'>{currentUser?.lastName}</Typography>
+                            </div>
+                            <IconButton
+                                className='p-0'
+                                onClick={() => logoutConfirmRef.current.openConfirm()}
+                            >
+                                <LogoutIcon />
+                            </IconButton>
+                        </div>
                     </div>
-                </div>
+                </Tippy>
             </div>
             <Confirmation
                 ref={logoutConfirmRef}
