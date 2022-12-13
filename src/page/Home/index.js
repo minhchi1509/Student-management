@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <div className='container'>
             <div className='min-h-screen grid grid-cols-15'>
-                <div className='relative z-10 col-span-2 lg:col-span-3 bg-white dark:bg-[#1C2536]'>
+                <div className='z-10 col-span-2 lg:col-span-3 bg-white dark:bg-[#1C2536]'>
                     <Sidebar />
                 </div>
                 <div className='col-span-13 lg:col-span-12 pb-10'>
