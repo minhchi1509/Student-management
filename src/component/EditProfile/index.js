@@ -1,4 +1,4 @@
-import { IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import { Grid } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,14 +6,13 @@ import DefaultAvt from '../../assets/images/defaultAvt.png';
 import DatePicker from '../FormUI/DatePicker';
 import FormInput from '../FormUI/FormInput';
 import FormRadio from '../FormUI/FormRadio';
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { editUser, getAllUsers } from '../../redux/features/userSlice';
 
 export default function EditProfile() {
-    const avatarRef = useRef(null);
     const dispatch = useDispatch();
     const { currentUser } = useSelector(state => state.user);
     const [avatarImgSrc, setAvatarImgSrc] = useState(currentUser?.avatarImage);
@@ -68,40 +67,48 @@ export default function EditProfile() {
     }
 
     return (
-        <div className='p-5'>
+        <Box padding={3}>
             <Typography className='font-bold' variant='h4'>Chỉnh sửa trang cá nhân</Typography>
-
-            {/* Edit image profile */}
-            <div className='mt-10'>
+            <Box marginTop={5}>
                 <Typography className='font-bold text-[20px]'>Ảnh đại diện</Typography>
-                <div className='flex items-center gap-4 mt-3'>
-                    <input type="file" onChange={handleChange} className='hidden' ref={avatarRef} />
-                    <img src={avatarImgSrc || DefaultAvt} alt="" className='h-[120px] w-[120px] object-cover rounded-full' />
-                    <div className='flex flex-col gap-3'>
-                        <div
-                            className='flex items-center justify-between h-10 p-2 gap-2 rounded-lg cursor-pointer bg-purple-500 hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700'
-                            onClick={() => avatarRef.current.click()}
+                <Stack
+                    marginTop={2}
+                    direction='row'
+                    alignItems='center'
+                    spacing={2}
+                >
+                    <Avatar
+                        src={avatarImgSrc || DefaultAvt}
+                        alt='Avatar'
+                        className='w-[120px] h-[120px]'
+                    />
+                    <Stack
+                        direction='column'
+                        spacing={1}
+                    >
+                        <Button
+                            component="label"
+                            variant='contained'
+                            color='secondary'
+                            className='rounded-lg normal-case'
+                            startIcon={<CameraAltIcon />}
                         >
-                            <IconButton disableRipple className='text-gray-100 p-0 z-0'>
-                                <CameraAltIcon />
-                            </IconButton>
-                            <Typography className='text-[15px] text-gray-100'>Chọn ảnh</Typography>
-                        </div>
-                        <div
-                            className='flex items-center gap-2 h-10 p-2 rounded-lg cursor-pointer bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700'
+                            Chọn ảnh
+                            <input hidden accept="image/*" type="file" onChange={handleChange} />
+                        </Button>
+                        <Button
+                            variant='contained'
+                            color='error'
+                            className='rounded-lg normal-case'
+                            startIcon={<DeleteIcon />}
                             onClick={() => setAvatarImgSrc('')}
                         >
-                            <IconButton disableRipple className='text-gray-100 p-0 z-0'>
-                                <DeleteIcon />
-                            </IconButton>
-                            <Typography className='text-[15px] text-gray-100'>Xóa</Typography>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Edit information */}
-            <div className='pt-5'>
+                            Xóa
+                        </Button>
+                    </Stack>
+                </Stack>
+            </Box>
+            <Box marginTop={2}>
                 <Typography className='font-bold text-[20px]'>Cập nhật thông tin của bạn</Typography>
                 <Formik
                     initialValues={INITIAL_FORM_EDIT}
@@ -129,19 +136,32 @@ export default function EditProfile() {
                                 <FormRadio label="Giới tính" name="gender" />
                             </Grid>
                         </Grid>
-                        <div className='flex gap-3 mt-5'>
-                            <button
-                                className='h-10 w-20 bg-gray-200 hover:bg-gray-300 dark:bg-gray-500 dark:hover:bg-gray-600 rounded-lg'
+                        <Stack
+                            direction='row'
+                            spacing={2}
+                            marginTop={2}
+                        >
+                            <Button
                                 type='reset'
-                                onClick={() => setAvatarImgSrc('')}
+                                variant='contained'
+                                className='bg-grey-500 rounded-lg normal-case'
+                                onClick={() => setAvatarImgSrc(currentUser?.avatarImage)}
                             >
                                 Reset
-                            </button>
-                            <button className='h-10 w-28 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:bg-opacity-50' type='submit' disabled={isLoading}>Cập nhật</button>
-                        </div>
+                            </Button>
+                            <Button
+                                type='submit'
+                                variant='contained'
+                                color='primary'
+                                className='rounded-lg normal-case'
+                                disabled={isLoading}
+                            >
+                                Cập nhật
+                            </Button>
+                        </Stack>
                     </Form>
                 </Formik>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }

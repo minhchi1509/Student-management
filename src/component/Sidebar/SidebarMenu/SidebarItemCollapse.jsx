@@ -28,7 +28,7 @@ export default function SidebarItemCollapse({ item }) {
                                 subItemList.map((subItem, index) => (
                                     <ListItemButton
                                         key={index}
-                                        className='rounded-lg gap-5 p-2'
+                                        className='rounded-lg gap-5 p-1'
                                         onClick={() => handleClickItem(subItem)}
                                     >
                                         <ListItemIcon className='min-w-0'>
