@@ -4,7 +4,7 @@ import { Avatar, Typography } from '@mui/material';
 import { IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SidebarMenu from './SidebarMenu';
-import DarkmodeToggle from '../DarkmodeToggle';
+import DarkmodeToggle from './DarkmodeToggle';
 import Confirmation from '../Confirmation';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
