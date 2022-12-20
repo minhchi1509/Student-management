@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import DatePicker from "../../../component/FormUI/DatePicker";
-import FormInput from "../../../component/FormUI/FormInput";
-import FormRadio from "../../../component/FormUI/FormRadio";
+import { FormInput, DatePicker, FormSelectRadio } from '../../../component/FormUI';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
-import { Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Grid, Box, Divider, Paper, Stack, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import Notification from '../../../component/FormUI/Notification';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { register } from '../../../redux/features/userSlice';
+import { BlueButton, GreenButton } from '../../../component/Button';
 
 const INITIAL_FORM_STATE = {
     firstName: '',
@@ -38,77 +35,110 @@ const FORM_VALIDATION = Yup.object({
 });
 
 export default function Signup() {
-    const [success, setSuccess] = useState(false);
+    const [signupSuccessfully, setSignupSuccessfully] = useState(false);
     const { loading } = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleRegister = async (values) => {
         await dispatch(register({
             ...values,
             avatarImage: '',
         }));
-        setSuccess(true);
+        setSignupSuccessfully(true);
     }
 
     return (
         <>
-            <div className='flex flex-col justify-center items-center fixed inset-0'>
-                <div className='flex flex-col items-center w-full max-w-lg rounded-xl bg-white p-4 shadow-md'>
-                    {/* Header */}
-                    <div className="w-full h-20 border-b">
-                        <p className="font-[700] text-[32px] text-[#1c1e21]">Đăng ký</p>
-                        <p className="font-[400] text-[15px] text-[#606770]">Nhanh chóng và dễ dàng.</p>
-                    </div>
-
-                    {/* Body */}
+            <Stack
+                direction='column'
+                alignItems='center'
+                justifyContent='center'
+                sx={{ minHeight: '100vh', paddingX: 2 }}
+            >
+                <Paper elevation={3} className='w-full max-w-lg rounded-xl p-4'>
                     <Formik
                         initialValues={INITIAL_FORM_STATE}
                         validationSchema={FORM_VALIDATION}
                         onSubmit={(values) => handleRegister(values)}
                     >
                         <Form>
-                            <Grid container spacing={2} className='mt-1'>
-                                <Grid item xs={6}>
-                                    <FormInput label="Họ" name="firstName" size="small" />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <FormInput label="Tên" name="lastName" size="small" />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <FormInput label="Email" name="email" size="small" />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <FormInput label="Mật khẩu" name="password" size="small" type='password' />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <DatePicker label="Sinh nhật" name="dateOfBirth" />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <FormRadio label="Giới tính" name="gender" />
-                                </Grid>
-                            </Grid>
-                            <div className='flex flex-col items-center mt-5'>
-                                <button
-                                    type='submit'
-                                    className='h-9 w-[194px] rounded-md text-white font-[700] text-sm cursor-pointer bg-green-500 hover:bg-green-600 duration-300 disabled:opacity-50'
-                                    disabled={loading}
-                                >
-                                    Đăng ký
-                                </button>
-                            </div>
+                            <Stack
+                                direction='column'
+                                alignItems='center'
+                                divider={<Divider orientation="horizontal" flexItem />}
+                            >
+                                <Box className='w-full h-20'>
+                                    <Typography className='text-[32px] font-bold'>Đăng ký</Typography>
+                                    <Typography className='text-[15px] text-[#606770]'>
+                                        Nhanh chóng và dễ dàng.
+                                    </Typography>
+                                </Box>
+                                <Box className='pb-4'>
+                                    <Grid container spacing={2} className='mt-1'>
+                                        <Grid item xs={6}>
+                                            <FormInput label="Họ" name="firstName" size="small" />
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <FormInput label="Tên" name="lastName" size="small" />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <FormInput label="Email" name="email" size="small" />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <FormInput label="Mật khẩu" name="password" size="small" type='password' />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <DatePicker label="Sinh nhật" name="dateOfBirth" />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <FormSelectRadio label="Giới tính" name="gender" />
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                                <Box className='pt-4'>
+                                    <Stack direction='column' alignItems='center'>
+                                        <GreenButton
+                                            type='submit'
+                                            variant='contained'
+                                            className='w-[200px]'
+                                            disabled={loading}
+                                        >
+                                            Đăng ký
+                                        </GreenButton>
+                                        <Link
+                                            to='/login'
+                                            className='mt-4 text-blue-500 text-[14px] no-underline hover:underline'
+                                        >
+                                            Bạn đã có tài khoản? Đăng nhập ngay
+                                        </Link>
+                                    </Stack>
+                                </Box>
+                            </Stack>
                         </Form>
                     </Formik>
-
-                    {/* Footer */}
-                    <Link to='/login' className='mt-4 text-blue-500 font-[500] text-[14px] no-underline hover:underline'>Bạn đã có tài khoản? Đăng nhập ngay</Link>
-                </div>
-            </div>
-            <Notification
-                open={success}
-                icon={<CheckCircleOutlineIcon />}
-                head={'Đăng ký thành công!'}
-                details={'Vui lòng đăng nhập để tiếp tục.'}
-            />
+                </Paper>
+            </Stack>
+            <Dialog
+                fullWidth
+                maxWidth='xs'
+                open={signupSuccessfully}
+                sx={{
+                    '& .MuiPaper-root': {
+                        borderRadius: 2
+                    }
+                }}
+            >
+                <DialogTitle sx={{ fontSize: 25, fontWeight: 600 }}>Đăng ký thành công</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Đăng ký thành công, vui lòng sử dụng email và mật khẩu bạn vừa đăng ký để đăng nhập
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <BlueButton variant='contained' onClick={() => navigate('/login')}>Ok</BlueButton>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }

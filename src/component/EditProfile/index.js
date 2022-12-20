@@ -1,16 +1,14 @@
-import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
-import { Grid } from '@mui/material';
+import React, { useState } from 'react'
+import { Avatar, Box, Stack, Grid, Typography } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DefaultAvt from '../../assets/images/defaultAvt.png';
-import DatePicker from '../FormUI/DatePicker';
-import FormInput from '../FormUI/FormInput';
-import FormRadio from '../FormUI/FormRadio';
-import React, { useState } from 'react'
+import { FormInput, DatePicker, FormSelectRadio } from '../FormUI';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { editUser, getAllUsers } from '../../redux/features/userSlice';
+import { BlueButton, GrayButton, PurpleButton, RedButton } from '../Button';
 
 export default function EditProfile() {
     const dispatch = useDispatch();
@@ -86,25 +84,21 @@ export default function EditProfile() {
                         direction='column'
                         spacing={1}
                     >
-                        <Button
+                        <PurpleButton
                             component="label"
                             variant='contained'
-                            color='secondary'
-                            className='rounded-lg normal-case'
                             startIcon={<CameraAltIcon />}
                         >
                             Chọn ảnh
                             <input hidden accept="image/*" type="file" onChange={handleChange} />
-                        </Button>
-                        <Button
+                        </PurpleButton>
+                        <RedButton
                             variant='contained'
-                            color='error'
-                            className='rounded-lg normal-case'
                             startIcon={<DeleteIcon />}
                             onClick={() => setAvatarImgSrc('')}
                         >
                             Xóa
-                        </Button>
+                        </RedButton>
                     </Stack>
                 </Stack>
             </Box>
@@ -133,7 +127,7 @@ export default function EditProfile() {
                                 <DatePicker label="Sinh nhật" name="dateOfBirth" />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormRadio label="Giới tính" name="gender" />
+                                <FormSelectRadio label="Giới tính" name="gender" />
                             </Grid>
                         </Grid>
                         <Stack
@@ -141,23 +135,16 @@ export default function EditProfile() {
                             spacing={2}
                             marginTop={2}
                         >
-                            <Button
+                            <GrayButton
                                 type='reset'
                                 variant='contained'
-                                className='bg-grey-500 rounded-lg normal-case'
                                 onClick={() => setAvatarImgSrc(currentUser?.avatarImage)}
                             >
                                 Reset
-                            </Button>
-                            <Button
-                                type='submit'
-                                variant='contained'
-                                color='primary'
-                                className='rounded-lg normal-case'
-                                disabled={isLoading}
-                            >
+                            </GrayButton>
+                            <BlueButton type='submit' variant='contained' disabled={isLoading}>
                                 Cập nhật
-                            </Button>
+                            </BlueButton>
                         </Stack>
                     </Form>
                 </Formik>

@@ -32,15 +32,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className={`${currentMode}`}>
-          <div className="relative min-h-screen bg-gray-50 dark:bg-[#1A2027] z-10">
+          <div className="min-h-screen bg-gray-50 dark:bg-[#18181b]">
             <BrowserRouter>
               <Routes>
                 <Route element={<Login />} path='/login' />
                 <Route element={<Signup />} path='/signup' />
                 <Route element={<Home />} path='/'>
-                  <Route path='setting'>
-                    <Route path='edit' element={<EditProfile />} />
-                  </Route>
+                  <Route path='edit' element={<EditProfile />} />
                 </Route>
                 <Route path='*' element={<p>404 Not found</p>} />
               </Routes>

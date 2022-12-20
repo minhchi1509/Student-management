@@ -17,6 +17,7 @@ export default function SidebarItemCollapse({ item }) {
 
     return (
         <Tippy
+            placement='right-start'
             interactive
             visible={open}
             onClickOutside={() => setOpen(false)}
@@ -42,7 +43,6 @@ export default function SidebarItemCollapse({ item }) {
                     </Paper>
                 </div>
             )}
-            placement='right-start'
         >
             <div>
                 <ListItemButton className='rounded-lg px-1 sm:px-3 gap-5' onClick={() => setOpen(!open)}>

@@ -13,12 +13,11 @@ const menuItemList = [
         icon: <HomeOutlinedIcon />,
     },
     {
-        to: '/setting',
         title: 'Setting',
         icon: <SettingsIcon />,
         subItemList: [
             {
-                to: '/setting/edit',
+                to: '/edit',
                 title: 'Edit profile',
                 icon: <EditIcon />
             },

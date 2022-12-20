@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Logo from '../../assets/images/Logo.png'
-import { Avatar, Typography } from '@mui/material';
-import { IconButton } from '@mui/material';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, Dialog, DialogTitle, DialogContent, DialogActions, IconButton } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout'
+import CloseIcon from '@mui/icons-material/Close'
 import SidebarMenu from './SidebarMenu';
 import DarkmodeToggle from './DarkmodeToggle';
-import Confirmation from '../Confirmation';
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMode } from '../../redux/features/modeSlice';
-import { setCurrentUser } from '../../redux/features/userSlice';
 import Tippy from '@tippyjs/react/headless';
+import { BlueButton, GrayButton } from '../Button';
+import { useNavigate } from 'react-router-dom';
+import { setCurrentUser } from '../../redux/features/userSlice';
+import { toggleMode } from '../../redux/features/modeSlice';
 
 const Header = () => {
     return (
@@ -34,10 +33,16 @@ const Body = () => {
 }
 
 const Footer = () => {
-    const logoutConfirmRef = useRef(null);
+    const [openPopper, setOpenPopper] = useState(false);
+    const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
+    const { currentUser } = useSelector(state => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.user);
+
+    const handleClickItem = () => {
+        setOpenPopper(false);
+        setOpenLogoutDialog(true);
+    }
 
     const handleLogout = () => {
         localStorage.setItem('currentUser', null);
@@ -45,67 +50,89 @@ const Footer = () => {
         dispatch(toggleMode('light'));
         navigate('/login');
     }
-
     return (
         <>
-            <div className='flex flex-col items-center'>
-                <div className='w-full flex items-center gap-3 mt-10'>
-                    <div className='flex-1 xl:flex-none'>
-                        <Tippy
-                            interactive
-                            render={attrs => (
-                                <div tabIndex="-1" {...attrs}>
-                                    <div className='w-40 p-2 shadow-lg rounded-md bg-gray-100 dark:bg-[#454647] xl:hidden'>
-                                        <div
-                                            className='flex items-center gap-3 p-1 hover:bg-gray-200 dark:hover:bg-[#303031] rounded-md cursor-pointer'
-                                            onClick={() => logoutConfirmRef.current.openConfirm()}
-                                        >
-                                            <IconButton className='p-0'>
-                                                <LogoutIcon />
-                                            </IconButton>
-                                            <p>Đăng xuất</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                            placement='bottom-start'
-                            trigger='click'
-                        >
-                            <Avatar
-                                className='bg-gray-400 w-10 h-10 lg:w-12 lg:h-12 mx-auto xl:mx-0 scale-75 md:scale-100 cursor-pointer'
-                                src={currentUser?.avatarImage}
+            <Tippy
+                placement='right-start'
+                interactive
+                visible={openPopper}
+                onClickOutside={() => setOpenPopper(false)}
+                render={attrs => (
+                    <div tabIndex="-1" {...attrs}>
+                        <Paper elevation={3} className='w-48 p-2 lg:hidden dark:bg-[#2d2e2e]'>
+                            <ListItemButton
+                                className='rounded-lg gap-5 p-1'
+                                onClick={handleClickItem}
                             >
-                                {currentUser?.lastName?.[0]}
-                            </Avatar>
-                        </Tippy>
-
+                                <ListItemIcon className='min-w-0'>
+                                    <LogoutIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Đăng xuất' />
+                            </ListItemButton>
+                        </Paper>
                     </div>
-                    <div className='hidden xl:flex flex-1 items-center justify-between'>
-                        <div className='leading-[20px]'>
-                            <p>Welcome,</p>
-                            <Typography className='font-bold text-[20px]'>{currentUser?.lastName}</Typography>
-                        </div>
-                        <IconButton
-                            className='p-0'
-                            onClick={() => logoutConfirmRef.current.openConfirm()}
+                )}
+            >
+                <ListItem alignItems='center' className='mt-5 justify-between px-0 sm:px-3'>
+                    <ListItemAvatar
+                        className='flex-1 min-w-0 lg:min-w-[56px]'
+                        onClick={() => setOpenPopper(!openPopper)}
+                    >
+                        <Avatar
+                            alt='avt'
+                            src={currentUser?.avatarImage}
+                            className='mx-auto lg:mx-0 w-8 h-8 sm:w-10 sm:h-10 cursor-pointer bg-gray-400'
                         >
-                            <LogoutIcon />
-                        </IconButton>
-                    </div>
-                </div>
-            </div>
-            <Confirmation
-                ref={logoutConfirmRef}
-                title='Xác nhận đăng xuất'
-                details='Bạn có chắc muốn đăng xuất?'
-                handleConfirm={handleLogout}
-            />
+                            {currentUser?.lastName?.[0]}
+                        </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText className='hidden xl:block'>
+                        <Typography>Welcome,</Typography>
+                        <Typography className='text-[20px] font-bold'>
+                            {currentUser?.lastName}
+                        </Typography>
+                    </ListItemText>
+                    <IconButton className='hidden lg:flex' onClick={() => setOpenLogoutDialog(true)}>
+                        <LogoutIcon />
+                    </IconButton>
+                </ListItem>
+            </Tippy>
+            <Dialog
+                fullWidth
+                maxWidth='xs'
+                open={openLogoutDialog}
+                onClose={() => setOpenLogoutDialog(false)}
+                sx={{
+                    '& .MuiPaper-root': {
+                        borderRadius: 2
+                    }
+                }}
+            >
+                <DialogTitle sx={{ p: 2, fontSize: '20px', fontWeight: 700 }}>
+                    Xác nhận đăng xuất
+                    <IconButton
+                        sx={{ position: 'absolute', top: 8, right: 8, }}
+                        onClick={() => setOpenLogoutDialog(false)}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent dividers sx={{ textAlign: 'center' }}>
+                    <Typography>Bạn có chắc muốn đăng xuất?</Typography>
+                </DialogContent>
+                <DialogActions sx={{ p: '10px' }}>
+                    <GrayButton variant='contained' onClick={() => setOpenLogoutDialog(false)}>
+                        Hủy bỏ
+                    </GrayButton>
+                    <BlueButton variant='contained' onClick={handleLogout}>Ok</BlueButton>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
 export default function Sidebar() {
     return (
-        <div className='sticky top-5 left-0 w-full px-2 lg:px-4'>
+        <div className='sticky top-5 left-0 px-2 lg:px-4'>
             <Header />
             <Body />
             <Footer />

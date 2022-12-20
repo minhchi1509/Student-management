@@ -16,7 +16,7 @@ const CustomFormLabel = styled(FormLabel)({
 
 const cls = "w-full mx-auto border rounded-md";
 
-function FormRadio(props) {
+function FormSelectRadio(props) {
     const { setFieldValue } = useFormikContext();
     const [field, meta] = useField(props.name);
     const handleRadioChange = (event) => {
@@ -43,4 +43,4 @@ function FormRadio(props) {
     );
 }
 
-export default FormRadio;
+export default FormSelectRadio;

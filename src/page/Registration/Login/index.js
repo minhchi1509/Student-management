@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { Form, Formik } from "formik";
-import FormInput from "../../../component/FormUI/FormInput";
+import { FormInput } from "../../../component/FormUI";
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
