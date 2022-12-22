@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { FormInput, DatePicker, FormSelectRadio } from '../../../component/FormUI';
+import { FormInput, DatePicker, FormSelectRadio } from '../FormUI';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { Grid, Box, Divider, Paper, Stack, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../../redux/features/userSlice';
-import { BlueButton, GreenButton } from '../../../component/Button';
+import { register } from '../../redux/features/userSlice';
+import { BlueButton, GreenButton } from '../Button';
 
 const INITIAL_FORM_STATE = {
     firstName: '',
@@ -68,14 +68,14 @@ export default function Signup() {
                                 alignItems='center'
                                 divider={<Divider orientation="horizontal" flexItem />}
                             >
-                                <Box className='w-full h-20'>
-                                    <Typography className='text-[32px] font-bold'>Đăng ký</Typography>
-                                    <Typography className='text-[15px] text-[#606770]'>
+                                <Box width='100%' height='80px'>
+                                    <Typography fontSize={32} fontWeight={700}>Đăng ký</Typography>
+                                    <Typography fontSize={15} color='#606770'>
                                         Nhanh chóng và dễ dàng.
                                     </Typography>
                                 </Box>
-                                <Box className='pb-4'>
-                                    <Grid container spacing={2} className='mt-1'>
+                                <Box paddingBottom={2}>
+                                    <Grid container spacing={2} marginTop={0.5}>
                                         <Grid item xs={6}>
                                             <FormInput label="Họ" name="firstName" size="small" />
                                         </Grid>
@@ -96,8 +96,8 @@ export default function Signup() {
                                         </Grid>
                                     </Grid>
                                 </Box>
-                                <Box className='pt-4'>
-                                    <Stack direction='column' alignItems='center'>
+                                <Box paddingTop={2}>
+                                    <Stack direction='column' alignItems='center' gap={2}>
                                         <GreenButton
                                             type='submit'
                                             variant='contained'
@@ -108,7 +108,7 @@ export default function Signup() {
                                         </GreenButton>
                                         <Link
                                             to='/login'
-                                            className='mt-4 text-blue-500 text-[14px] no-underline hover:underline'
+                                            className='text-blue-500 text-[14px] no-underline hover:underline'
                                         >
                                             Bạn đã có tài khoản? Đăng nhập ngay
                                         </Link>

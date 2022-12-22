@@ -29,8 +29,12 @@ export const userSlice = createSlice({
     },
     extraReducers: {
         //Get all users
+        [getAllUsers.pending]: (state) => {
+            state.loading = true;
+        },
         [getAllUsers.fulfilled]: (state, action) => {
             state.allUsers = [...action.payload]
+            state.loading = false;
         },
 
         //Register

@@ -66,9 +66,9 @@ export default function EditProfile() {
 
     return (
         <Box padding={3}>
-            <Typography className='font-bold' variant='h4'>Chỉnh sửa trang cá nhân</Typography>
+            <Typography fontWeight='bold' variant='h4'>Chỉnh sửa trang cá nhân</Typography>
             <Box marginTop={5}>
-                <Typography className='font-bold text-[20px]'>Ảnh đại diện</Typography>
+                <Typography fontSize={20} fontWeight={700}>Ảnh đại diện</Typography>
                 <Stack
                     marginTop={2}
                     direction='row'
@@ -103,14 +103,14 @@ export default function EditProfile() {
                 </Stack>
             </Box>
             <Box marginTop={2}>
-                <Typography className='font-bold text-[20px]'>Cập nhật thông tin của bạn</Typography>
+                <Typography fontSize={20} fontWeight={700}>Cập nhật thông tin của bạn</Typography>
                 <Formik
                     initialValues={INITIAL_FORM_EDIT}
                     validationSchema={FORM_EDIT_VALIDATION}
                     onSubmit={(values) => handleUpdate(values)}
                 >
                     <Form>
-                        <Grid container spacing={2} className='max-w-3xl mt-1'>
+                        <Grid container spacing={2} maxWidth={768} marginTop={0.5}>
                             <Grid item xs={6}>
                                 <FormInput label="Họ" name="firstName" size="small" />
                             </Grid>

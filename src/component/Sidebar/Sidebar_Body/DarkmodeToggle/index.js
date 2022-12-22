@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMode } from '../../../redux/features/modeSlice';
+import { toggleMode } from '../../../../redux/features/modeSlice';
 import { Button, styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';

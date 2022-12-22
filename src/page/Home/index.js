@@ -1,3 +1,4 @@
+import { Box, Grid } from '@mui/material';
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom'
@@ -15,15 +16,15 @@ export default function Home() {
     }, [])
 
     return (
-        <div className='container'>
-            <div className='min-h-screen grid grid-cols-15'>
-                <div className='col-span-2 lg:col-span-3 bg-white dark:bg-[#0A1929]'>
+        <Box className='container'>
+            <Grid container columns={15}>
+                <Grid item xs={2} lg={3}>
                     <Sidebar />
-                </div>
-                <div className='col-span-13 lg:col-span-12 pb-10'>
+                </Grid>
+                <Grid item xs>
                     <Outlet />
-                </div>
-            </div>
-        </div>
+                </Grid>
+            </Grid>
+        </Box>
     )
 }
