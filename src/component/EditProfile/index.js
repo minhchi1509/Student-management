@@ -12,9 +12,8 @@ import { BlueButton, GrayButton, PurpleButton, RedButton } from '../Button';
 
 export default function EditProfile() {
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.user);
+    const { currentUser, loading } = useSelector(state => state.user);
     const [avatarImgSrc, setAvatarImgSrc] = useState(currentUser?.avatarImage);
-    const { isLoading } = useSelector(state => state.user);
 
     const INITIAL_FORM_EDIT = {
         firstName: currentUser?.firstName,
@@ -142,7 +141,7 @@ export default function EditProfile() {
                             >
                                 Reset
                             </GrayButton>
-                            <BlueButton type='submit' variant='contained' disabled={isLoading}>
+                            <BlueButton type='submit' variant='contained' disabled={loading}>
                                 Cập nhật
                             </BlueButton>
                         </Stack>

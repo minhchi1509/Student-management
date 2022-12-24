@@ -6,14 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllUsers } from "./redux/features/userSlice";
 import { routes } from "./routes";
+import { useState } from "react";
 
 function App() {
-  const { loading } = useSelector(state => state.user);
   const theme = useCustomTheme();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
+  const getData = async () => {
+    setLoading(true);
+    await dispatch(getAllUsers());
+    setLoading(false);
+  }
 
   useEffect(() => {
-    dispatch(getAllUsers());
+    getData();
   }, [])
 
   return (

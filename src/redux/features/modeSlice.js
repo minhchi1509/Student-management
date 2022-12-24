@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const modeSlice = createSlice({
+const modeSlice = createSlice({
     name: 'mode',
     initialState: {
         currentMode: 'light',
