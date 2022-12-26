@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../../../assets/images/Logo.png'
+import Logo from '../../../../assets/images/Logo.png'
 import { ListItem, ListItemAvatar, ListItemText, Avatar, Typography } from '@mui/material'
 
 export default function Header() {

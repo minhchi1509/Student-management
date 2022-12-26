@@ -1,12 +1,10 @@
-import { BrowserRouter, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ThemeProvider } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
 import useCustomTheme from "./hooks/useCustomTheme";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/features/userSlice";
 import { routes } from "./routes";
-import { useState } from "react";
 
 function App() {
   const theme = useCustomTheme();
@@ -27,15 +25,7 @@ function App() {
     !loading ? (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className={`${theme.palette.mode}`}>
-          <div className="min-h-screen bg-gray-50 dark:bg-[#18181b]">
-            <BrowserRouter>
-              <Routes>
-                {routes}
-              </Routes>
-            </BrowserRouter>
-          </div>
-        </div>
+        {routes}
       </ThemeProvider>
     ) : null
   );

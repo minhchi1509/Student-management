@@ -4,10 +4,10 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import CloseIcon from '@mui/icons-material/Close'
 import { useDispatch, useSelector } from 'react-redux';
 import Tippy from '@tippyjs/react/headless';
-import { BlueButton, GrayButton } from '../../Button';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentUser } from '../../../redux/features/userSlice';
-import { toggleMode } from '../../../redux/features/modeSlice';
+import { BlueButton, GrayButton } from '../../../../components/Button';
+import { setCurrentUser } from '../../../../redux/features/userSlice';
+import { toggleMode } from '../../../../redux/features/modeSlice';
 
 export default function Footer() {
     const [openPopper, setOpenPopper] = useState(false);

@@ -1,11 +1,11 @@
 import { Divider, Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { FormInput } from "../FormUI";
+import { FormInput } from "../../components/FormUI";
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { BlueButton, GreenButton } from "../Button";
+import { BlueButton, GreenButton } from "../../components/Button";
 
 const INITIAL_LOGIN_FORM = {
     email: '',

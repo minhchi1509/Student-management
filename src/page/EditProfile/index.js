@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Avatar, Box, Stack, Grid, Typography } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DefaultAvt from '../../assets/images/defaultAvt.png';
-import { FormInput, DatePicker, FormSelectRadio } from '../FormUI';
+import { FormInput, DatePicker, FormSelectRadio } from '../../components/FormUI';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { editUser, getAllUsers } from '../../redux/features/userSlice';
-import { BlueButton, GrayButton, PurpleButton, RedButton } from '../Button';
+import { BlueButton, GrayButton, PurpleButton, RedButton } from '../../components/Button';
+import { NotificationModal } from '../../components/shared';
 
 export default function EditProfile() {
+    const notificationRef = useRef(null);
     const dispatch = useDispatch();
     const { currentUser, loading } = useSelector(state => state.user);
     const [avatarImgSrc, setAvatarImgSrc] = useState(currentUser?.avatarImage);
@@ -36,7 +38,8 @@ export default function EditProfile() {
             .required('Vui lòng nhập mật khẩu')
             .min(8, 'Mật khẩu phải chứa ít nhất 8 ký tự'),
         dateOfBirth: Yup.string()
-            .required('Vui lòng chọn ngày sinh'),
+            .required('Vui lòng chọn ngày sinh')
+            .nullable(),
         gender: Yup.string()
             .required('Vui lòng chọn giới tính'),
     });
@@ -61,6 +64,7 @@ export default function EditProfile() {
             information: newInformation
         }))
         await dispatch(getAllUsers());
+        notificationRef.current.show();
     }
 
     return (
@@ -111,22 +115,27 @@ export default function EditProfile() {
                     <Form>
                         <Grid container spacing={2} maxWidth={768} marginTop={0.5}>
                             <Grid item xs={6}>
-                                <FormInput label="Họ" name="firstName" size="small" />
+                                <FormInput label="Họ" name="firstName" />
                             </Grid>
                             <Grid item xs={6}>
-                                <FormInput label="Tên" name="lastName" size="small" />
+                                <FormInput label="Tên" name="lastName" />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormInput label="Email" name="email" size="small" />
+                                <FormInput label="Email" name="email" />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormInput label="Mật khẩu" name="password" size="small" type='password' />
+                                <FormInput label="Mật khẩu" name="password" type='password' />
                             </Grid>
                             <Grid item xs={12}>
                                 <DatePicker label="Sinh nhật" name="dateOfBirth" />
                             </Grid>
                             <Grid item xs={12}>
-                                <FormSelectRadio label="Giới tính" name="gender" />
+                                <FormSelectRadio
+                                    label="Giới tính"
+                                    name="gender"
+                                    direction='row'
+                                    itemList={["Nam", "Nữ", "Khác"]}
+                                />
                             </Grid>
                         </Grid>
                         <Stack
@@ -148,6 +157,12 @@ export default function EditProfile() {
                     </Form>
                 </Formik>
             </Box>
+            <NotificationModal
+                ref={notificationRef}
+                title='Cập nhật thành công'
+                content='Bạn đã chỉnh sửa thành công trang cá nhân của mình'
+                handleAction={() => notificationRef.current.close()}
+            />
         </Box>
     )
 }

@@ -1,31 +1,26 @@
 import React from 'react';
-import { TextField } from '@mui/material';
+import { styled, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useField, useFormikContext } from 'formik';
 
+const StyledTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiFormHelperText-root': {
+        marginLeft: '3px'
+    },
+    '& label': {
+        color: theme.palette.mode === 'light' ? '#9e9e9e' : '#bdbdbd',
+    },
+}))
+
 function DatePicker(props) {
     const [field, meta] = useField(props.name);
     const { setFieldValue } = useFormikContext();
 
-    const styledProps = {
-        '& .MuiOutlinedInput-root': {
-            '&:hover:not(.Mui-focused, .Mui-error) fieldset': {
-                borderColor: '#BCBDBE'
-            },
-        },
-        '& .MuiFormHelperText-root': {
-            marginLeft: '3px',
-        },
-        '& label': {
-            color: 'gray'
-        }
-    }
-
     const configTextField = {
+        ...field,
         ...props,
-        sx: styledProps,
         size: "small",
         fullWidth: true,
         error: meta && meta.touched && meta.error,
@@ -36,7 +31,7 @@ function DatePicker(props) {
         inputFormat: "DD/MM/YYYY",
         onChange: (newValue) => setFieldValue(props.name, newValue),
         value: field.value,
-        renderInput: (params) => <TextField {...params} {...configTextField} />
+        renderInput: (params) => <StyledTextField {...params} {...configTextField} />
     }
 
     return (

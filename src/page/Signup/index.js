@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { FormInput, DatePicker, FormSelectRadio } from '../FormUI';
+import React, { useEffect, useRef } from 'react'
+import { FormInput, DatePicker, FormSelectRadio } from '../../components/FormUI';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import { Grid, Box, Divider, Paper, Stack, Typography, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+import { Grid, Box, Divider, Paper, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/features/userSlice';
-import { BlueButton, GreenButton } from '../Button';
+import { GreenButton } from '../../components/Button';
+import { NotificationModal } from '../../components/shared';
 
 const INITIAL_FORM_STATE = {
     firstName: '',
@@ -29,13 +30,14 @@ const FORM_VALIDATION = Yup.object({
         .required('Vui lòng nhập mật khẩu')
         .min(8, 'Mật khẩu phải chứa ít nhất 8 ký tự'),
     dateOfBirth: Yup.string()
-        .required('Vui lòng chọn ngày sinh'),
+        .required('Vui lòng chọn ngày sinh')
+        .nullable(),
     gender: Yup.string()
         .required('Vui lòng chọn giới tính'),
 });
 
 export default function Signup() {
-    const [signupSuccessfully, setSignupSuccessfully] = useState(false);
+    const notificationRef = useRef(null);
     const { loading } = useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -45,8 +47,13 @@ export default function Signup() {
             ...values,
             avatarImage: '',
         }));
-        setSignupSuccessfully(true);
+        notificationRef.current.show();
     }
+
+    useEffect(() => {
+        if (JSON.parse(localStorage.getItem('currentUser')))
+            navigate('/');
+    }, [])
 
     return (
         <>
@@ -92,7 +99,12 @@ export default function Signup() {
                                             <DatePicker label="Sinh nhật" name="dateOfBirth" />
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <FormSelectRadio label="Giới tính" name="gender" />
+                                            <FormSelectRadio
+                                                label="Giới tính"
+                                                name="gender"
+                                                direction='row'
+                                                itemList={["Nam", "Nữ", "Khác"]}
+                                            />
                                         </Grid>
                                     </Grid>
                                 </Box>
@@ -119,26 +131,12 @@ export default function Signup() {
                     </Formik>
                 </Paper>
             </Stack>
-            <Dialog
-                fullWidth
-                maxWidth='xs'
-                open={signupSuccessfully}
-                sx={{
-                    '& .MuiPaper-root': {
-                        borderRadius: 2
-                    }
-                }}
-            >
-                <DialogTitle sx={{ fontSize: 25, fontWeight: 600 }}>Đăng ký thành công</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Đăng ký thành công, vui lòng sử dụng email và mật khẩu bạn vừa đăng ký để đăng nhập
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <BlueButton variant='contained' onClick={() => navigate('/login')}>Ok</BlueButton>
-                </DialogActions>
-            </Dialog>
+            <NotificationModal
+                ref={notificationRef}
+                title='Đăng ký thành công'
+                content='Đăng ký thành công, vui lòng sử dụng email và mật khẩu bạn vừa đăng ký để đăng nhập'
+                handleAction={() => navigate('/login')}
+            />
         </>
     )
 }

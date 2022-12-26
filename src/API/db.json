@@ -3,32 +3,12 @@
     {
       "firstName": "Nguyễn",
       "lastName": "Chí",
-      "gender": "male",
+      "gender": "Khác",
       "email": "minhchico300kc@gmail.com",
       "password": "123456789",
-      "dateOfBirth": "2002-09-14T17:00:00.000Z",
+      "dateOfBirth": "2003-02-07T17:00:00.000Z",
       "avatarImage": "",
       "id": 1
-    },
-    {
-      "firstName": "Nguyễn",
-      "lastName": "Bằng",
-      "gender": "male",
-      "email": "bangnguyen@gmail.com",
-      "password": "12345678910",
-      "dateOfBirth": "2022-12-02T17:00:00.000Z",
-      "avatarImage": "",
-      "id": 2
-    },
-    {
-      "firstName": "Lê Thanh",
-      "lastName": "Phúc",
-      "gender": "male",
-      "email": "lephuc@gmail.com",
-      "password": "123456789+",
-      "dateOfBirth": "2001-05-18T17:00:00.000Z",
-      "avatarImage": "",
-      "id": 3
     }
   ]
 }

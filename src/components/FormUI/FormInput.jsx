@@ -2,19 +2,14 @@ import { styled, TextField } from '@mui/material';
 import { useField } from 'formik';
 import React from 'react';
 
-const CustomTextField = styled(TextField)({
-    '& .MuiOutlinedInput-root': {
-        '&:hover:not(.Mui-focused, .Mui-error) fieldset': {
-            borderColor: '#BCBDBE'
-        }
-    },
+const StyledTextField = styled(TextField)(({ theme }) => ({
     '& .MuiFormHelperText-root': {
         marginLeft: '3px'
     },
     '& label': {
-        color: 'gray'
+        color: theme.palette.mode === 'light' ? '#9e9e9e' : '#bdbdbd',
     }
-})
+}))
 
 function FormInput(props) {
     const [field, meta] = useField(props.name);
@@ -22,13 +17,14 @@ function FormInput(props) {
     const configTextField = {
         ...field,
         ...props,
+        size: 'small',
         fullWidth: true,
         error: meta && meta.touched && meta.error,
         helperText: meta && meta.touched && meta.error ? meta.error : null,
     }
 
     return (
-        <CustomTextField {...configTextField} />
+        <StyledTextField {...configTextField} />
     );
 }
 
