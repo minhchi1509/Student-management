@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, DialogContentText } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout'
 import CloseIcon from '@mui/icons-material/Close'
 import { useDispatch, useSelector } from 'react-redux';
 import Tippy from '@tippyjs/react/headless';
 import { useNavigate } from 'react-router-dom';
-import { BlueButton, GrayButton } from '../../../../components/Button';
-import { setCurrentUser } from '../../../../redux/features/userSlice';
-import { toggleMode } from '../../../../redux/features/modeSlice';
 
-export default function Footer() {
+import { BlueButton, GrayButton } from '../../../common/Button';
+import { setCurrentUser } from '../../../redux/features/userSlice';
+
+export default function Logout() {
     const [openPopper, setOpenPopper] = useState(false);
     const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
     const { currentUser } = useSelector(state => state.user);
@@ -24,7 +24,6 @@ export default function Footer() {
     const handleLogout = () => {
         localStorage.setItem('currentUser', null);
         dispatch(setCurrentUser(null));
-        dispatch(toggleMode('light'));
         navigate('/login');
     }
 

@@ -1,11 +1,12 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Divider, Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { FormInput } from "../../components/FormUI";
 import * as Yup from 'yup';
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { BlueButton, GreenButton } from "../../components/Button";
+
+import { FormInput } from "../../common/FormUI";
+import { BlueButton, GreenButton } from "../../common/Button";
 
 const INITIAL_LOGIN_FORM = {
     email: '',
@@ -78,7 +79,7 @@ export default function Login() {
                                 }
                             </Box>
                             <Box paddingTop={2} width='100%'>
-                                <Stack direction='column' alignItems='center' gap={2}>
+                                <Stack direction='column' alignItems='center' spacing={2}>
                                     <BlueButton type="submit" variant="contained" fullWidth>
                                         Đăng nhập
                                     </BlueButton>

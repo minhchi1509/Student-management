@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMode } from '../../../../../redux/features/modeSlice';
 import { Button, styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
-import { useState } from 'react';
+
+import { toggleMode } from '../../../redux/features/modeSlice';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '& .MuiToggleButtonGroup-grouped': {
@@ -17,7 +17,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     }
 }));
 
-export default function DarkmodeToggle() {
+export default function Darkmode() {
     const currentMode = useSelector(state => state.mode.currentMode);
     const [mode, setMode] = useState(currentMode);
     const dispatch = useDispatch();
@@ -30,14 +30,9 @@ export default function DarkmodeToggle() {
     }
 
     const handleToggleMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            dispatch(toggleMode('dark'));
-        }
-        else {
-            setMode('light');
-            dispatch(toggleMode('light'));
-        }
+        const newMode = mode === 'light' ? 'dark' : 'light';
+        setMode(newMode);
+        dispatch(toggleMode(newMode));
     }
 
     return (

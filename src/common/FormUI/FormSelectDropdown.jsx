@@ -2,14 +2,11 @@ import React from 'react'
 import { FormControl, MenuItem, styled, TextField } from '@mui/material'
 import { useField } from 'formik';
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
+const StyledTextField = styled(TextField)({
     '& .MuiFormHelperText-root': {
         marginLeft: '3px'
     },
-    '& label': {
-        color: theme.palette.mode === 'light' ? '#9e9e9e' : '#bdbdbd',
-    }
-}))
+})
 
 export default function FormSelectDropdown(props) {
     const { menuitemlist } = props;

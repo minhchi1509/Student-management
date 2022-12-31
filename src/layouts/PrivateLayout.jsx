@@ -1,10 +1,11 @@
-import React from 'react'
-import { Box, Grid } from '@mui/material'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React from 'react';
+import { Box, Grid } from '@mui/material';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+
 import { setCurrentUser } from '../redux/features/userSlice';
-import Sidebar from './components/Sidebar';
+import Sidebar from './Sidebar';
 
 export default function PrivateLayout() {
     const dispatch = useDispatch();

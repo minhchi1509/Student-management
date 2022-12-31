@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import * as Yup from 'yup';
-import { PurpleButton } from '../Button'
 import { Dialog, DialogContent, DialogTitle, Grid, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close'
-import { Form, Formik } from 'formik';
-import { FormInput, FormSelectRadio, DatePicker } from '../FormUI';
-import { provinces } from '../../constants';
-import FormSelectDropdown from '../FormUI/FormSelectDropdown';
+import * as Yup from 'yup';
+
+import { PurpleButton } from '../../../common/Button';
+import { Form, Formik, useFormikContext } from 'formik';
+import { FormInput, FormSelectRadio, DatePicker, FormSelectDropdown } from '../../../common/FormUI';
+import { majorsList, provinces } from '../../../constants';
 
 const INITIAL_FORM_STATE = {
     fullName: '',
@@ -64,8 +64,8 @@ export default function AddStudent() {
                 maxWidth='xs'
                 sx={{
                     '& .MuiPaper-root': {
-                        borderRadius: 2
-                    }
+                        borderRadius: 2,
+                    },
                 }}
             >
                 <Formik
@@ -109,11 +109,18 @@ export default function AddStudent() {
                                         menuitemlist={provinces}
                                     />
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={12}>
                                     <FormSelectDropdown
                                         label='Khóa'
                                         name='schoolYear'
                                         menuitemlist={['2022', '2021', '2020', '2019', '2018']}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormSelectDropdown
+                                        label='Ngành'
+                                        name='majors'
+                                        menuitemlist={majorsList}
                                     />
                                 </Grid>
                             </Grid>

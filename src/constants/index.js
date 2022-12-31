@@ -63,3 +63,14 @@ export const provinces = [
     "Vĩnh Phúc",
     "Yên Bái",
 ]
+
+export const majorsList = [
+    "Công nghệ thông tin",
+    "An toàn thông tin",
+    "Marketing",
+    "Quản trị kinh doanh",
+    "Kỹ thuật Điện tử viễn thông",
+    "Công nghệ đa phương tiện",
+    "Kế toán",
+    "Thương mại điện tử"
+]

@@ -1,9 +1,10 @@
-import React from 'react'
-import { Box } from '@mui/material'
-import useCustomTheme from '../hooks/useCustomTheme'
+import React from 'react';
+import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
-export default function CommonLayout({ children }) {
+import useCustomTheme from '../hooks/useCustomTheme';
+
+export default function CommonLayout() {
     const theme = useCustomTheme();
 
     return (

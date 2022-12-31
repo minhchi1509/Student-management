@@ -1,7 +1,6 @@
-import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
-import Search from '../../components/Search'
-import AddStudent from '../../components/AddStudent'
+import { Box, Grid, Typography } from '@mui/material'
+import { Search, FormModal } from './components';
 
 export default function Home() {
     return (
@@ -13,7 +12,7 @@ export default function Home() {
                         <Search />
                     </Grid>
                     <Grid item xs={2}>
-                        <AddStudent />
+                        <FormModal />
                     </Grid>
                 </Grid>
             </Box>

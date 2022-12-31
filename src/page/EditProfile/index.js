@@ -2,14 +2,15 @@ import React, { useState, useRef } from 'react'
 import { Avatar, Box, Stack, Grid, Typography } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
-import DefaultAvt from '../../assets/images/defaultAvt.png';
-import { FormInput, DatePicker, FormSelectRadio } from '../../components/FormUI';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+
+import DefaultAvt from '../../assets/images/defaultAvt.png';
+import { FormInput, DatePicker, FormSelectRadio } from '../../common/FormUI';
 import { editUser, getAllUsers } from '../../redux/features/userSlice';
-import { BlueButton, GrayButton, PurpleButton, RedButton } from '../../components/Button';
-import { NotificationModal } from '../../components/shared';
+import { BlueButton, GrayButton, PurpleButton, RedButton } from '../../common/Button';
+import { Notification } from '../../common/Modal';
 
 export default function EditProfile() {
     const notificationRef = useRef(null);
@@ -113,7 +114,7 @@ export default function EditProfile() {
                     onSubmit={(values) => handleUpdate(values)}
                 >
                     <Form>
-                        <Grid container spacing={2} maxWidth={768} marginTop={0.5}>
+                        <Grid container spacing={2} maxWidth={768} marginTop={0}>
                             <Grid item xs={6}>
                                 <FormInput label="Họ" name="firstName" />
                             </Grid>
@@ -134,7 +135,7 @@ export default function EditProfile() {
                                     label="Giới tính"
                                     name="gender"
                                     direction='row'
-                                    itemList={["Nam", "Nữ", "Khác"]}
+                                    itemlist={["Nam", "Nữ", "Khác"]}
                                 />
                             </Grid>
                         </Grid>
@@ -157,12 +158,12 @@ export default function EditProfile() {
                     </Form>
                 </Formik>
             </Box>
-            <NotificationModal
+            <Notification
                 ref={notificationRef}
                 title='Cập nhật thành công'
                 content='Bạn đã chỉnh sửa thành công trang cá nhân của mình'
                 handleAction={() => notificationRef.current.close()}
             />
-        </Box>
+        </Box >
     )
 }

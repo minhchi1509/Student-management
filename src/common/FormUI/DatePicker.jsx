@@ -5,16 +5,13 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useField, useFormikContext } from 'formik';
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
+const StyledTextField = styled(TextField)({
     '& .MuiFormHelperText-root': {
         marginLeft: '3px'
     },
-    '& label': {
-        color: theme.palette.mode === 'light' ? '#9e9e9e' : '#bdbdbd',
-    },
-}))
+})
 
-function DatePicker(props) {
+export default function DatePicker(props) {
     const [field, meta] = useField(props.name);
     const { setFieldValue } = useFormikContext();
 
@@ -29,6 +26,7 @@ function DatePicker(props) {
 
     const configDatePicker = {
         inputFormat: "DD/MM/YYYY",
+        maxDate: new Date(),
         onChange: (newValue) => setFieldValue(props.name, newValue),
         value: field.value,
         renderInput: (params) => <StyledTextField {...params} {...configTextField} />
@@ -40,5 +38,3 @@ function DatePicker(props) {
         </LocalizationProvider>
     );
 }
-
-export default DatePicker;

@@ -8,21 +8,22 @@ const StyledRadio = styled(Radio)({
     },
 })
 
-const StyledFormLabel = styled(FormLabel)({
+const StyledFormLabel = styled(FormLabel)(({ theme }) => ({
     '&.Mui-focused': {
-        color: '#606770',
+        color: theme.palette.mode === 'light' ? '#00000099' : '#ffffffb3'
     },
-})
+}))
 
-const StyledFormControlLabel = styled(FormControlLabel)({
+const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
     width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
     borderWidth: '1px',
     borderRadius: '6px',
-})
+    borderColor: theme.palette.mode === 'light' ? '#0000003b' : '#ffffff3b',
+}))
 
-function FormSelectRadio(props) {
+export default function FormSelectRadio(props) {
     const { direction, itemlist } = props;
     const [field, meta] = useField(props.name);
 
@@ -35,7 +36,7 @@ function FormSelectRadio(props) {
         <FormControl fullWidth size='small' error={meta && meta.touched && meta.error}>
             <StyledFormLabel>{props.label}</StyledFormLabel>
             <RadioGroup {...configRadioGroup}>
-                <Grid container spacing='12px' direction={direction}>
+                <Grid container gap='12px' direction={direction}>
                     {itemlist?.map((item, index) => (
                         <Grid key={index} item xs>
                             <StyledFormControlLabel value={item} control={<StyledRadio />} label={item} />
@@ -49,5 +50,3 @@ function FormSelectRadio(props) {
         </FormControl>
     );
 }
-
-export default FormSelectRadio;

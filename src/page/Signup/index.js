@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react'
-import { FormInput, DatePicker, FormSelectRadio } from '../../components/FormUI';
+import React, { useEffect, useRef } from 'react';
 import * as Yup from 'yup';
 import { Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { Grid, Box, Divider, Paper, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { FormInput, DatePicker, FormSelectRadio } from '../../common/FormUI';
 import { register } from '../../redux/features/userSlice';
-import { GreenButton } from '../../components/Button';
-import { NotificationModal } from '../../components/shared';
+import { GreenButton } from '../../common/Button';
+import { Notification } from '../../common/Modal';
 
 const INITIAL_FORM_STATE = {
     firstName: '',
@@ -77,7 +78,7 @@ export default function Signup() {
                             >
                                 <Box width='100%' height='80px'>
                                     <Typography fontSize={32} fontWeight={700}>Đăng ký</Typography>
-                                    <Typography fontSize={15} color='#606770'>
+                                    <Typography fontSize={15} color='#9e9e9e'>
                                         Nhanh chóng và dễ dàng.
                                     </Typography>
                                 </Box>
@@ -103,13 +104,13 @@ export default function Signup() {
                                                 label="Giới tính"
                                                 name="gender"
                                                 direction='row'
-                                                itemList={["Nam", "Nữ", "Khác"]}
+                                                itemlist={["Nam", "Nữ", "Khác"]}
                                             />
                                         </Grid>
                                     </Grid>
                                 </Box>
                                 <Box paddingTop={2}>
-                                    <Stack direction='column' alignItems='center' gap={2}>
+                                    <Stack direction='column' alignItems='center' spacing={2}>
                                         <GreenButton
                                             type='submit'
                                             variant='contained'
@@ -131,7 +132,7 @@ export default function Signup() {
                     </Formik>
                 </Paper>
             </Stack>
-            <NotificationModal
+            <Notification
                 ref={notificationRef}
                 title='Đăng ký thành công'
                 content='Đăng ký thành công, vui lòng sử dụng email và mật khẩu bạn vừa đăng ký để đăng nhập'
