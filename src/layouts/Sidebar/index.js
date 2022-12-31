@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from '../../assets/images/Logo.png';
-import { Box, List, ListItem, ListItemAvatar, ListItemText, Avatar, Typography } from '@mui/material'
+import Logo from '../../assets/images/LogoPTIT.png';
+import { Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import { menuConfigs } from '../../configs';
 import { MenuItem, CollapsibleMenuItem, Darkmode, Logout } from './components';
 
@@ -17,14 +17,14 @@ export default function Sidebar() {
         >
             <ListItem className='px-0 gap-3'>
                 <ListItemAvatar className='flex-1 lg:flex-none min-w-0'>
-                    <Avatar
+                    <img
                         alt='logo'
                         src={Logo}
-                        className='w-10 h-10 lg:w-12 lg:h-12 mx-auto lg:mx-0 lg:scale-150'
+                        className='w-8 h-8 lg:w-12 lg:h-12 mx-auto lg:mx-0'
                     />
                 </ListItemAvatar>
                 <ListItemText className='hidden lg:block'>
-                    <Typography fontSize={30} fontWeight={700}>Sun*</Typography>
+                    <Typography fontSize={30} fontWeight={700}>PTIT</Typography>
                 </ListItemText>
             </ListItem>
             <List className='flex flex-col gap-2'>
