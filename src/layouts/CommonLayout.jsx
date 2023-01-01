@@ -10,7 +10,7 @@ export default function CommonLayout() {
     return (
         <Box
             minHeight='100vh'
-            bgcolor={theme => theme.palette.mode === 'light' ? '#f9fafb' : '#18181b'}
+            bgcolor={theme => theme.palette.mode === 'light' ? '#f9fafb' : '#1A2027'}
             className={theme.palette.mode}
         >
             <Outlet />

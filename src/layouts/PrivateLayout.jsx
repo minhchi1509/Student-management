@@ -35,7 +35,7 @@ export default function PrivateLayout() {
                     <Grid item xs={2} lg={3}>
                         <Sidebar />
                     </Grid>
-                    <Grid item xs>
+                    <Grid item xs={13} lg={12}>
                         <Outlet />
                     </Grid>
                 </Grid>
