@@ -12,7 +12,8 @@ export const register = createAsyncThunk('user/register', async (value) => {
 })
 
 export const editUser = createAsyncThunk('user/editUser', async (value) => {
-    const { data } = await axios.patch(`http://localhost:5000/users/${value.id}`, value.information);
+    const { id, information } = value;
+    const { data } = await axios.patch(`http://localhost:5000/users/${id}`, information);
     return data;
 })
 
@@ -33,7 +34,6 @@ const userSlice = createSlice({
             //Get all users
             .addCase(getAllUsers.fulfilled, (state, action) => {
                 state.allUsers = action.payload;
-                state.loading = false;
             })
             //Register
             .addCase(register.pending, (state) => {
@@ -49,6 +49,7 @@ const userSlice = createSlice({
             })
             .addCase(editUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
+                state.allUsers[action.payload.id - 1] = action.payload;
                 state.loading = false;
             })
     }

@@ -64,7 +64,6 @@ export default function EditProfile() {
             id: id,
             information: newInformation
         }))
-        await dispatch(getAllUsers());
         notificationRef.current.show();
     }
 

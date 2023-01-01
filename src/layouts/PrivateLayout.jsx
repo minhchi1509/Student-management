@@ -1,33 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { setCurrentUser } from '../redux/features/userSlice';
 import Sidebar from './Sidebar';
+import { setCurrentUser } from '../redux/features/userSlice';
+import { getStudentList } from '../redux/features/studentSlice';
 
 export default function PrivateLayout() {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const getAllStudents = async (id) => {
+        setLoading(true);
+        await dispatch(getStudentList({ userId: id }));
+        setLoading(false);
+    }
 
     useEffect(() => {
         const id = JSON.parse(localStorage.getItem('currentUser'));
         dispatch(setCurrentUser(id));
         if (!id)
             navigate('/login');
+        else
+            getAllStudents(id);
     }, [])
 
     return (
-        <Box className='container'>
-            <Grid container columns={15}>
-                <Grid item xs={2} lg={3}>
-                    <Sidebar />
+        !loading ? (
+            <Box className='container'>
+                <Grid container columns={15}>
+                    <Grid item xs={2} lg={3}>
+                        <Sidebar />
+                    </Grid>
+                    <Grid item xs>
+                        <Outlet />
+                    </Grid>
                 </Grid>
-                <Grid item xs>
-                    <Outlet />
-                </Grid>
-            </Grid>
-        </Box>
+            </Box>
+        ) : null
     )
 }

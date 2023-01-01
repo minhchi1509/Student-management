@@ -9,7 +9,62 @@
       "dateOfBirth": "2003-02-07T17:00:00.000Z",
       "avatarImage": "",
       "id": 1
+    },
+    {
+      "firstName": "Trần",
+      "lastName": "Hưng",
+      "gender": "Nam",
+      "email": "tranhung@gmail.com",
+      "password": "12345678",
+      "dateOfBirth": "1999-12-02T17:00:00.000Z",
+      "avatarImage": "",
+      "id": 2
+    },
+    {
+      "firstName": "Lê",
+      "lastName": "Huy",
+      "gender": "Khác",
+      "email": "huylq@ptit.edu.vn",
+      "password": "123456789",
+      "dateOfBirth": "2002-12-04T17:00:00.000Z",
+      "avatarImage": "",
+      "id": 3
+    },
+    {
+      "firstName": "Nguyễn",
+      "lastName": "Bằng",
+      "gender": "Nam",
+      "email": "bangnguyen@gmail.com",
+      "password": "12345678",
+      "dateOfBirth": "2022-12-02T17:00:00.000Z",
+      "avatarImage": "",
+      "id": 4
     }
   ],
-  "students": []
+  "students": [
+    {
+      "fullName": "Nguyễn Đình Mạnh Quỳnh",
+      "gender": "Nam",
+      "dateOfBirth": "2002-12-10T17:00:00.000Z",
+      "address": "Hà Tĩnh",
+      "email": "ndmq@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCVT254",
+      "majors": "Kỹ thuật Điện tử viễn thông",
+      "uid": 1,
+      "id": 1
+    },
+    {
+      "fullName": "ChiCon1",
+      "gender": "Nam",
+      "dateOfBirth": "2022-12-05T17:00:00.000Z",
+      "address": "Bến Tre",
+      "email": "chicon1@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCPT215",
+      "majors": "Công nghệ đa phương tiện",
+      "uid": 1,
+      "id": 2
+    }
+  ]
 }

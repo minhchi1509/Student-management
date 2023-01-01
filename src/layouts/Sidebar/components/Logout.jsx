@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { BlueButton, GrayButton } from '../../../common/Button';
 import { setCurrentUser } from '../../../redux/features/userSlice';
+import { resetStudentList } from '../../../redux/features/studentSlice';
 
 export default function Logout() {
     const [openPopper, setOpenPopper] = useState(false);
@@ -24,6 +25,7 @@ export default function Logout() {
     const handleLogout = () => {
         localStorage.setItem('currentUser', null);
         dispatch(setCurrentUser(null));
+        dispatch(resetStudentList());
         navigate('/login');
     }
 
