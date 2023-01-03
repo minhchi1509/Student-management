@@ -65,6 +65,30 @@
       "majors": "Công nghệ đa phương tiện",
       "uid": 1,
       "id": 2
+    },
+    {
+      "fullName": "Nguyễn Văn Thế Bảo Anh",
+      "gender": "Nam",
+      "dateOfBirth": "2001-01-17T15:12:25.000Z",
+      "address": "TP. Hồ Chí Minh",
+      "email": "nguyenvanthebaoanh@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCVT152",
+      "majors": "Kỹ thuật Điện tử viễn thông",
+      "uid": 1,
+      "id": 3
+    },
+    {
+      "fullName": "Phạm Thị Thanh Huyền",
+      "gender": "Nữ",
+      "dateOfBirth": "2002-01-15T15:22:00.000Z",
+      "address": "Thái Nguyên",
+      "email": "ptth@gmail.com",
+      "schoolYear": "2021",
+      "studentCode": "B21DCKT152",
+      "majors": "Kế toán",
+      "uid": 1,
+      "id": 4
     }
   ]
 }

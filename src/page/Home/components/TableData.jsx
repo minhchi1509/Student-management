@@ -1,10 +1,37 @@
 import React from 'react'
-import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Paper, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { useSelector } from 'react-redux'
+import dayjs from 'dayjs';
+
+const StyledTable = styled(Table)(({ theme }) => ({
+    '& .MuiTableHead-root': {
+        '&.MuiTable-stickyHeader': {
+            '& .MuiTableRow-root': {
+                backgroundColor: theme.palette.mode === 'light' ? '#757575' : 'black',
+                '& .MuiTableCell-root': {
+                    color: 'white',
+                }
+            }
+        }
+    },
+    '& .MuiTableBody-root': {
+        '& .MuiTableRow-root': {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+            '&:last-child td, &:last-child th': {
+                border: 0,
+            },
+        }
+    },
+}))
 
 export default function TableData() {
+    const { studentList } = useSelector(state => state.student);
+
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: '1000px' }}>
+        <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
+            <StyledTable sx={{ minWidth: 1500 }} stickyHeader>
                 <TableHead>
                     <TableRow>
                         <TableCell>STT</TableCell>
@@ -18,7 +45,24 @@ export default function TableData() {
                         <TableCell align='left'>Ngành</TableCell>
                     </TableRow>
                 </TableHead>
-            </Table>
+                <TableBody>
+                    {studentList?.map((student, index) => (
+                        <TableRow key={index}>
+                            <TableCell align='left'>{index + 1}</TableCell>
+                            <TableCell align='left'>{student.fullName}</TableCell>
+                            <TableCell align='left'>
+                                {dayjs(student.dateOfBirth).format('DD/MM/YYYY')}
+                            </TableCell>
+                            <TableCell align='left'>{student.gender}</TableCell>
+                            <TableCell align='left'>{student.address}</TableCell>
+                            <TableCell align='left'>{student.email}</TableCell>
+                            <TableCell align='left'>{student.studentCode}</TableCell>
+                            <TableCell align='left'>{student.schoolYear}</TableCell>
+                            <TableCell align='left'>{student.majors}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </StyledTable>
         </TableContainer>
     )
 }
