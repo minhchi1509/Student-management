@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Grid, Typography } from '@mui/material'
-import { Search, FormModal, TableData } from './components';
+import { SearchStudent, AddStudent, TableData } from './components';
 
 export default function Home() {
     return (
@@ -9,10 +9,10 @@ export default function Home() {
             <Box marginTop={3}>
                 <Grid container spacing={2} columns={{ xs: 5, md: 12 }}>
                     <Grid item xs>
-                        <Search />
+                        <SearchStudent />
                     </Grid>
                     <Grid item xs={2}>
-                        <FormModal />
+                        <AddStudent />
                     </Grid>
                 </Grid>
             </Box>

@@ -5,12 +5,10 @@ import dayjs from 'dayjs';
 
 const StyledTable = styled(Table)(({ theme }) => ({
     '& .MuiTableHead-root': {
-        '&.MuiTable-stickyHeader': {
-            '& .MuiTableRow-root': {
+        '& .MuiTableRow-root': {
+            '& .MuiTableCell-root': {
                 backgroundColor: theme.palette.mode === 'light' ? '#757575' : 'black',
-                '& .MuiTableCell-root': {
-                    color: 'white',
-                }
+                color: 'white',
             }
         }
     },

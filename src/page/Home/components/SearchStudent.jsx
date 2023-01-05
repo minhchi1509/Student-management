@@ -2,7 +2,7 @@ import React from 'react'
 import { OutlinedInput, InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Search() {
+export default function SearchStudent() {
     return (
         <OutlinedInput
             size='small'

@@ -89,6 +89,30 @@
       "majors": "Kế toán",
       "uid": 1,
       "id": 4
+    },
+    {
+      "fullName": "Ngô Xuân Bách",
+      "gender": "Nam",
+      "dateOfBirth": "2000-01-20T16:43:37.000Z",
+      "address": "Hà Nội",
+      "email": "nxb@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCCN254",
+      "majors": "Công nghệ thông tin",
+      "uid": 1,
+      "id": 5
+    },
+    {
+      "fullName": "Phan Hương Ly",
+      "gender": "Nam",
+      "dateOfBirth": "2005-01-10T16:46:06.000Z",
+      "address": "Hòa Bình",
+      "email": "lyphan2601@hotmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCMR154",
+      "majors": "Marketing",
+      "uid": 1,
+      "id": 6
     }
   ]
 }
