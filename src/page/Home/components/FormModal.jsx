@@ -9,6 +9,7 @@ import { FormInput, FormSelectRadio, DatePicker, FormSelectDropdown } from '../.
 import configs from '../../../configs'
 import { getStudentCodeTitle } from '../../../utils'
 import { majorsList, provinces } from '../../../constants'
+import { Loading } from '../../../common/Modal'
 
 const StudentCodeInput = () => {
     const { values: { schoolYear, majors }, touched } = useFormikContext();
@@ -58,96 +59,98 @@ const FormModal = forwardRef((props, ref) => {
     }));
 
     return (
-        <Dialog
-            open={open}
-            fullWidth
-            maxWidth='sm'
-            sx={{
-                '& .MuiPaper-root': {
-                    borderRadius: 2,
-                    '::-webkit-scrollbar': {
-                        width: '6px',
+        <>
+            <Dialog
+                open={open}
+                fullWidth
+                maxWidth='sm'
+                sx={{
+                    '& .MuiPaper-root': {
+                        borderRadius: 2,
+                        '::-webkit-scrollbar': {
+                            width: '6px',
+                        },
+                        '::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#9e9e9e',
+                            borderRadius: '9999px',
+                        }
                     },
-                    '::-webkit-scrollbar-thumb': {
-                        backgroundColor: '#9e9e9e',
-                        borderRadius: '9999px',
-                    }
-                },
-            }}
-        >
-            <Formik
-                initialValues={INITIAL_FORM_STATE}
-                validationSchema={FORM_VALIDATION}
-                onSubmit={(values) => handleSubmit(values)}
+                }}
             >
-                <Form>
-                    <DialogTitle sx={{ p: 2, fontSize: '20px', fontWeight: 700 }}>
-                        {title}
-                        <IconButton
-                            sx={{ position: 'absolute', top: 8, right: 8, }}
-                            onClick={() => setOpen(false)}
-                        >
-                            <CloseIcon />
-                        </IconButton>
-                    </DialogTitle>
-                    <DialogContent dividers sx={{ p: 2 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <FormInput label="Họ và tên" name="fullName" size="small" />
+                <Formik
+                    initialValues={INITIAL_FORM_STATE}
+                    validationSchema={FORM_VALIDATION}
+                    onSubmit={(values) => handleSubmit(values)}
+                >
+                    <Form>
+                        <DialogTitle sx={{ p: 2, fontSize: '20px', fontWeight: 700 }}>
+                            {title}
+                            <IconButton
+                                sx={{ position: 'absolute', top: 8, right: 8, }}
+                                onClick={() => setOpen(false)}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                        </DialogTitle>
+                        <DialogContent dividers sx={{ p: 2 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <FormInput label="Họ và tên" name="fullName" size="small" />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormInput label="Email" name="email" size="small" />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormSelectRadio
+                                        label="Giới tính"
+                                        name="gender"
+                                        direction='row'
+                                        itemlist={["Nam", "Nữ", "Khác"]}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <DatePicker label="Sinh nhật" name="dateOfBirth" />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormSelectDropdown
+                                        label='Địa chỉ'
+                                        name='address'
+                                        menuitemlist={provinces}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormSelectDropdown
+                                        label='Khóa'
+                                        name='schoolYear'
+                                        menuitemlist={['2022', '2021', '2020', '2019', '2018']}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormSelectDropdown
+                                        label='Ngành'
+                                        name='majors'
+                                        menuitemlist={majorsList}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <StudentCodeInput />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormInput label="Email" name="email" size="small" />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormSelectRadio
-                                    label="Giới tính"
-                                    name="gender"
-                                    direction='row'
-                                    itemlist={["Nam", "Nữ", "Khác"]}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <DatePicker label="Sinh nhật" name="dateOfBirth" />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormSelectDropdown
-                                    label='Địa chỉ'
-                                    name='address'
-                                    menuitemlist={provinces}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormSelectDropdown
-                                    label='Khóa'
-                                    name='schoolYear'
-                                    menuitemlist={['2022', '2021', '2020', '2019', '2018']}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormSelectDropdown
-                                    label='Ngành'
-                                    name='majors'
-                                    menuitemlist={majorsList}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <StudentCodeInput />
-                            </Grid>
-                        </Grid>
-                    </DialogContent>
-                    <DialogActions sx={{ p: 2, justifyContent: 'center' }}>
-                        <GreenButton
-                            type='submit'
-                            variant='contained'
-                            disabled={loading}
-                            sx={{ width: '150px' }}
-                        >
-                            {buttonName}
-                        </GreenButton>
-                    </DialogActions>
-                </Form>
-            </Formik>
-        </Dialog>
+                        </DialogContent>
+                        <DialogActions sx={{ p: 2, justifyContent: 'center' }}>
+                            <GreenButton
+                                type='submit'
+                                variant='contained'
+                                sx={{ width: '150px' }}
+                            >
+                                {buttonName}
+                            </GreenButton>
+                        </DialogActions>
+                    </Form>
+                </Formik>
+            </Dialog>
+            <Loading isOpen={loading} />
+        </>
     )
 })
 

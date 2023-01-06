@@ -5,7 +5,7 @@ export default function Loading({ isOpen }) {
     return (
         <Backdrop
             open={isOpen}
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.tooltip + 1 }}
         >
             <CircularProgress color='inherit' />
         </Backdrop>
