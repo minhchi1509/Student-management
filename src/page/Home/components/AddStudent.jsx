@@ -35,6 +35,8 @@ export default function AddStudent() {
             <FormModal
                 ref={formModalRef}
                 type='add'
+                title='Thêm sinh viên'
+                buttonName='Thêm'
                 handleSubmit={handleAddStudent}
             />
         </>

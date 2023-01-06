@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
-import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, DialogContentText } from '@mui/material';
+import React, { useState, useRef } from 'react';
+import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout'
-import CloseIcon from '@mui/icons-material/Close'
 import { useDispatch, useSelector } from 'react-redux';
 import Tippy from '@tippyjs/react/headless';
 import { useNavigate } from 'react-router-dom';
 
-import { BlueButton, GrayButton } from '../../../common/Button';
 import { setCurrentUser } from '../../../redux/features/userSlice';
 import { resetStudentList } from '../../../redux/features/studentSlice';
+import { Confirmation } from '../../../common/Modal';
 
 export default function Logout() {
     const [openPopper, setOpenPopper] = useState(false);
-    const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
+    const confirmationRef = useRef(null);
     const { currentUser } = useSelector(state => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleClickItem = () => {
         setOpenPopper(false);
-        setOpenLogoutDialog(true);
+        confirmationRef.current.show();
     }
 
     const handleLogout = () => {
@@ -71,41 +70,17 @@ export default function Logout() {
                             {currentUser?.lastName}
                         </Typography>
                     </ListItemText>
-                    <IconButton className='hidden lg:flex' onClick={() => setOpenLogoutDialog(true)}>
+                    <IconButton className='hidden lg:flex' onClick={() => confirmationRef.current.show()}>
                         <LogoutIcon />
                     </IconButton>
                 </ListItem>
             </Tippy>
-            <Dialog
-                fullWidth
-                maxWidth='xs'
-                open={openLogoutDialog}
-                onClose={() => setOpenLogoutDialog(false)}
-                sx={{
-                    '& .MuiPaper-root': {
-                        borderRadius: 2
-                    }
-                }}
-            >
-                <DialogTitle sx={{ p: 2, fontSize: '20px', fontWeight: 700 }}>
-                    Xác nhận đăng xuất
-                    <IconButton
-                        sx={{ position: 'absolute', top: 8, right: 8, }}
-                        onClick={() => setOpenLogoutDialog(false)}
-                    >
-                        <CloseIcon />
-                    </IconButton>
-                </DialogTitle>
-                <DialogContent dividers sx={{ textAlign: 'center' }}>
-                    <DialogContentText>Bạn có chắc muốn đăng xuất?</DialogContentText>
-                </DialogContent>
-                <DialogActions sx={{ p: '10px' }}>
-                    <GrayButton variant='contained' onClick={() => setOpenLogoutDialog(false)}>
-                        Hủy bỏ
-                    </GrayButton>
-                    <BlueButton variant='contained' onClick={handleLogout}>Ok</BlueButton>
-                </DialogActions>
-            </Dialog>
+            <Confirmation
+                ref={confirmationRef}
+                title='Xác nhận đăng xuất'
+                content='Bạn có chắc muốn đăng xuất'
+                handleAction={handleLogout}
+            />
         </>
     )
 }

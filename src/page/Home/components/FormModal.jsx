@@ -6,7 +6,7 @@ import { Form, Formik, useField, useFormikContext } from 'formik'
 
 import { GreenButton } from '../../../common/Button'
 import { FormInput, FormSelectRadio, DatePicker, FormSelectDropdown } from '../../../common/FormUI'
-import { formModalConfigs } from '../../../configs'
+import configs from '../../../configs'
 import { getStudentCodeTitle } from '../../../utils'
 import { majorsList, provinces } from '../../../constants'
 
@@ -43,10 +43,10 @@ const StudentCodeInput = () => {
 }
 
 const FormModal = forwardRef((props, ref) => {
-    const { type, student, handleSubmit } = props;
+    const { type, student, title, buttonName, handleSubmit } = props;
     const [open, setOpen] = useState(false);
     const { loading } = useSelector(state => state.student);
-    const { INITIAL_FORM_STATE, FORM_VALIDATION } = formModalConfigs(type, student);
+    const { INITIAL_FORM_STATE, FORM_VALIDATION } = configs.formInitialization(type, student);
 
     useImperativeHandle(ref, () => ({
         show: () => {
@@ -65,6 +65,13 @@ const FormModal = forwardRef((props, ref) => {
             sx={{
                 '& .MuiPaper-root': {
                     borderRadius: 2,
+                    '::-webkit-scrollbar': {
+                        width: '6px',
+                    },
+                    '::-webkit-scrollbar-thumb': {
+                        backgroundColor: '#9e9e9e',
+                        borderRadius: '9999px',
+                    }
                 },
             }}
         >
@@ -75,7 +82,7 @@ const FormModal = forwardRef((props, ref) => {
             >
                 <Form>
                     <DialogTitle sx={{ p: 2, fontSize: '20px', fontWeight: 700 }}>
-                        {type === 'update' ? 'Chỉnh sửa thông tin sinh viên' : (type === 'add' ? 'Thêm sinh viên' : 'Tìm kiếm sinh viên')}
+                        {title}
                         <IconButton
                             sx={{ position: 'absolute', top: 8, right: 8, }}
                             onClick={() => setOpen(false)}
@@ -135,7 +142,7 @@ const FormModal = forwardRef((props, ref) => {
                             disabled={loading}
                             sx={{ width: '150px' }}
                         >
-                            {type === 'update' ? 'Cập nhật' : (type === 'add' ? 'Thêm' : 'Tìm kiếm')}
+                            {buttonName}
                         </GreenButton>
                     </DialogActions>
                 </Form>

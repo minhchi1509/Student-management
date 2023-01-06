@@ -2,7 +2,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 
-const menuConfigs = [
+const menuList = [
     {
         path: '/',
         title: 'Home',
@@ -21,4 +21,4 @@ const menuConfigs = [
     },
 ]
 
-export default menuConfigs;
+export default menuList;

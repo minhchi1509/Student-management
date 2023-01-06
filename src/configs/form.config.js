@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const formModalConfigs = (type, obj) => {
+const formInitialization = (type, obj) => {
     const INITIAL_FORM_STATE = type === 'update' ?
         {
             fullName: obj.fullName,
@@ -49,4 +49,4 @@ const formModalConfigs = (type, obj) => {
     return { INITIAL_FORM_STATE, FORM_VALIDATION };
 }
 
-export default formModalConfigs;
+export default formInitialization;

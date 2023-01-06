@@ -1,7 +1,8 @@
 import React from 'react'
-import Logo from '../../assets/images/LogoPTIT.png';
 import { Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
-import { menuConfigs } from '../../configs';
+
+import Logo from '../../assets/images/LogoPTIT.png';
+import configs from '../../configs';
 import { MenuItem, CollapsibleMenuItem, Darkmode, Logout } from './components';
 
 export default function Sidebar() {
@@ -28,7 +29,7 @@ export default function Sidebar() {
                 </ListItemText>
             </ListItem>
             <List className='flex flex-col gap-2'>
-                {menuConfigs.map((item, index) => (
+                {configs.menuList.map((item, index) => (
                     item.subMenu ?
                         <CollapsibleMenuItem key={index} item={item} /> :
                         <MenuItem key={index} item={item} />

@@ -1,2 +1,11 @@
-export { default as menuConfigs } from './menuConfigs';
-export { default as formModalConfigs } from './formModalConfigs';
+import formInitialization from './form.config';
+import menuList from './menu.config';
+import routes from './routes.config';
+
+const configs = {
+    formInitialization,
+    menuList,
+    routes,
+}
+
+export default configs

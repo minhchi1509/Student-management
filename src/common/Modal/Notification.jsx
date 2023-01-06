@@ -1,5 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+
 import { BlueButton } from '../Button';
 
 const NotificationModal = forwardRef((props, ref) => {

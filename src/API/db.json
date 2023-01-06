@@ -43,66 +43,6 @@
   ],
   "students": [
     {
-      "fullName": "Nguyễn Đình Mạnh Quỳnh",
-      "gender": "Nam",
-      "dateOfBirth": "2002-12-10T17:00:00.000Z",
-      "address": "Hà Tĩnh",
-      "email": "ndmq@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCVT254",
-      "majors": "Kỹ thuật Điện tử viễn thông",
-      "uid": 1,
-      "id": 1
-    },
-    {
-      "fullName": "ChiCon1",
-      "gender": "Nam",
-      "dateOfBirth": "2022-12-05T17:00:00.000Z",
-      "address": "Bến Tre",
-      "email": "chicon1@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCPT215",
-      "majors": "Công nghệ đa phương tiện",
-      "uid": 1,
-      "id": 2
-    },
-    {
-      "fullName": "Nguyễn Văn Thế Bảo Anh",
-      "gender": "Nam",
-      "dateOfBirth": "2001-01-17T15:12:25.000Z",
-      "address": "TP. Hồ Chí Minh",
-      "email": "nguyenvanthebaoanh@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCVT152",
-      "majors": "Kỹ thuật Điện tử viễn thông",
-      "uid": 1,
-      "id": 3
-    },
-    {
-      "fullName": "Phạm Thị Thanh Huyền",
-      "gender": "Nữ",
-      "dateOfBirth": "2002-01-15T15:22:00.000Z",
-      "address": "Thái Nguyên",
-      "email": "ptth@gmail.com",
-      "schoolYear": "2021",
-      "studentCode": "B21DCKT152",
-      "majors": "Kế toán",
-      "uid": 1,
-      "id": 4
-    },
-    {
-      "fullName": "Ngô Xuân Bách",
-      "gender": "Nam",
-      "dateOfBirth": "2000-01-20T16:43:37.000Z",
-      "address": "Hà Nội",
-      "email": "nxb@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCCN254",
-      "majors": "Công nghệ thông tin",
-      "uid": 1,
-      "id": 5
-    },
-    {
       "fullName": "Phan Hương Ly",
       "gender": "Nam",
       "dateOfBirth": "2005-01-10T16:46:06.000Z",
@@ -113,6 +53,54 @@
       "majors": "Marketing",
       "uid": 1,
       "id": 6
+    },
+    {
+      "fullName": "Trần Chiến Thắng",
+      "gender": "Nam",
+      "dateOfBirth": "2002-02-13T05:49:08.000Z",
+      "address": "Quảng Ninh",
+      "email": "chienthang1301@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCAT154",
+      "majors": "An toàn thông tin",
+      "uid": 1,
+      "id": 7
+    },
+    {
+      "fullName": "Ngô Thế Sơn",
+      "gender": "Khác",
+      "dateOfBirth": "2001-01-25T05:50:15.000Z",
+      "address": "Hải Phòng",
+      "email": "sonngothe123@hotmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCVT223",
+      "majors": "Kỹ thuật Điện tử viễn thông",
+      "uid": 1,
+      "id": 8
+    },
+    {
+      "fullName": "Trần Chiến Thắng",
+      "gender": "Nữ",
+      "dateOfBirth": "2001-01-06T14:52:31.849Z",
+      "address": "Nghệ An",
+      "email": "chienthang@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCCN564",
+      "majors": "Công nghệ thông tin",
+      "uid": 1,
+      "id": 11
+    },
+    {
+      "fullName": "Lê Quang Phúc",
+      "gender": "Nam",
+      "dateOfBirth": "2002-04-10T14:59:22.000Z",
+      "address": "Phú Thọ",
+      "email": "lequangphuc1501@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCAT264",
+      "majors": "An toàn thông tin",
+      "uid": 1,
+      "id": 12
     }
   ]
 }

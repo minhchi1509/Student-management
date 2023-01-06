@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { publicRoutes, privateRoutes } from "./appRoutes";
+
+import configs from "../configs";
 import CommonLayout from '../layouts/CommonLayout';
 import PrivateLayout from '../layouts/PrivateLayout';
 
@@ -24,4 +25,5 @@ const generateAppRoutes = (publicRoutes, privateRoutes) => {
     )
 }
 
-export const routes = generateAppRoutes(publicRoutes, privateRoutes);
+const appRoutes = generateAppRoutes(configs.routes.publicRoutes, configs.routes.privateRoutes);
+export default appRoutes;
