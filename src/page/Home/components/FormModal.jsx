@@ -12,15 +12,15 @@ import { majorsList, provinces } from '../../../constants'
 import { Loading } from '../../../common/Modal'
 
 const StudentCodeInput = () => {
-    const { values: { schoolYear, majors }, touched } = useFormikContext();
+    const { values: { schoolYear, majors } } = useFormikContext();
     const [field, meta] = useField("studentCode");
     const [textAdorment, setTextAdorment] = useState('');
 
     useEffect(() => {
-        if (schoolYear !== '' && majors !== '' && touched.schoolYear && touched.majors) {
+        if (schoolYear !== '' && majors !== '') {
             setTextAdorment(getStudentCodeTitle(schoolYear, majors));
         }
-    }, [schoolYear, majors, touched.schoolYear, touched.majors])
+    }, [schoolYear, majors])
 
     return (
         <TextField

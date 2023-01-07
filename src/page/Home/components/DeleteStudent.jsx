@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { IconButton } from '@mui/material'
+import { IconButton, Tooltip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { Confirmation, Loading } from '../../../common/Modal';
@@ -18,9 +18,11 @@ export default function DeleteStudent({ student }) {
 
     return (
         <>
-            <IconButton color='error' onClick={() => confirmationRef.current.show()}>
-                <DeleteIcon />
-            </IconButton>
+            <Tooltip title='Xóa' disableInteractive>
+                <IconButton color='error' onClick={() => confirmationRef.current.show()}>
+                    <DeleteIcon />
+                </IconButton>
+            </Tooltip>
             <Confirmation
                 ref={confirmationRef}
                 title='Xác nhận xóa sinh viên'

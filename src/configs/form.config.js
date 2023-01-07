@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const formInitialization = (type, obj) => {
-    const INITIAL_FORM_STATE = type === 'update' ?
+    const INITIAL_FORM_STATE = type === 'edit' ?
         {
             fullName: obj.fullName,
             gender: obj.gender,
@@ -12,6 +12,7 @@ const formInitialization = (type, obj) => {
             studentCode: obj.studentCode.slice(7),
             majors: obj.majors,
             uid: obj.uid,
+            id: obj.id,
         } :
         {
             fullName: '',

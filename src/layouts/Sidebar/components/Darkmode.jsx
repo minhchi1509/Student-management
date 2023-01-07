@@ -37,7 +37,10 @@ export default function Darkmode() {
 
     return (
         <>
-            <Tooltip title={mode === 'light' ? 'Turn off the light' : 'Turn on the light'}>
+            <Tooltip
+                title={mode === 'light' ? 'Turn off the light' : 'Turn on the light'}
+                disableInteractive
+            >
                 <Button
                     variant='outlined'
                     color='primary'

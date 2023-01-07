@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { IconButton, Pagination, Paper, Stack, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit';
+import { Pagination, Paper, Stack, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useSelector } from 'react-redux'
 import dayjs from 'dayjs';
 
 import DeleteStudent from './DeleteStudent';
+import EditStudent from './EditStudent';
 
 const StyledTable = styled(Table)(({ theme }) => ({
     '& .MuiTableHead-root': {
@@ -81,9 +81,7 @@ export default function TableData() {
                                     <TableCell align='right' sx={{ p: 0 }}>
                                         <Stack direction='row'>
                                             <DeleteStudent student={student} />
-                                            <IconButton color='secondary'>
-                                                <EditIcon />
-                                            </IconButton>
+                                            <EditStudent student={student} />
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
