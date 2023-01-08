@@ -30,7 +30,7 @@ export default function EditStudent({ student }) {
             </Tooltip>
             <FormModal
                 ref={formModalRef}
-                type='edit'
+                type='search'
                 title='Chỉnh sửa thông tin sinh viên'
                 buttonName='Cập nhật'
                 student={student}

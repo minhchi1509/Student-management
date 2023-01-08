@@ -79,7 +79,7 @@ const FormModal = forwardRef((props, ref) => {
             >
                 <Formik
                     initialValues={INITIAL_FORM_STATE}
-                    validationSchema={FORM_VALIDATION}
+                    validationSchema={type !== 'search' ? FORM_VALIDATION : null}
                     onSubmit={(values) => handleSubmit(values)}
                 >
                     <Form>
