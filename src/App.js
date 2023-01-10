@@ -3,10 +3,10 @@ import { ThemeProvider } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
 import { useDispatch } from "react-redux";
 
-import { Loading } from "./common/Modal";
-import useCustomTheme from "./hooks/useCustomTheme";
-import { getAllUsers } from "./redux/features/userSlice";
-import appRoutes from "./routes";
+import { Loading } from "common/Modal";
+import useCustomTheme from "hooks/useCustomTheme";
+import { getAllUsers } from "redux/features/userSlice";
+import appRoutes from "routes";
 
 function App() {
   const theme = useCustomTheme();
