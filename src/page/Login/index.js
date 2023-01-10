@@ -5,8 +5,8 @@ import { Divider, Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from 'yup';
 
-import { FormInput } from "../../common/FormUI";
-import { BlueButton, GreenButton } from "../../common/Button";
+import { FormInput } from "common/FormUI";
+import { BlueButton, GreenButton } from "common/Button";
 
 const INITIAL_LOGIN_FORM = {
     email: '',

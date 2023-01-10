@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 
-import configs from "../configs";
-import CommonLayout from '../layouts/CommonLayout';
-import PrivateLayout from '../layouts/PrivateLayout';
+import configs from "configs";
+import CommonLayout from 'layouts/CommonLayout';
+import PrivateLayout from 'layouts/PrivateLayout';
 
 const generateRoutes = (routes) => {
     return routes.map((route, index) => (

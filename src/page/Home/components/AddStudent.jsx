@@ -2,12 +2,10 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 
-import { PurpleButton } from '../../../common/Button';
-import { addNewStudent } from '../../../redux/features/studentSlice';
-import { getStudentCodeTitle } from '../../../utils';
+import { PurpleButton } from 'common/Button';
+import { addNewStudent } from 'redux/features/studentSlice';
+import { getStudentCodeTitle } from 'utils';
 import FormModal from './FormModal';
-
-
 
 export default function AddStudent() {
     const formModalRef = useRef(null);

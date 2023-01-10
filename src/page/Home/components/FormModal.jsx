@@ -4,12 +4,12 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useSelector } from 'react-redux'
 import { Form, Formik, useField, useFormikContext } from 'formik'
 
-import { GreenButton } from '../../../common/Button'
-import { FormInput, FormSelectRadio, DatePicker, FormSelectDropdown } from '../../../common/FormUI'
-import configs from '../../../configs'
-import { getStudentCodeTitle } from '../../../utils'
-import { majorsList, provinces } from '../../../constants'
-import { Loading } from '../../../common/Modal'
+import { GreenButton } from 'common/Button'
+import { FormInput, FormSelectRadio, DatePicker, FormSelectDropdown } from 'common/FormUI'
+import configs from 'configs'
+import { getStudentCodeTitle } from 'utils'
+import { majorsList, provinces } from 'constants'
+import { Loading } from 'common/Modal'
 
 const StudentCodeInput = () => {
     const { values: { schoolYear, majors } } = useFormikContext();

@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { IconButton, Tooltip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { Confirmation, Loading } from '../../../common/Modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteStudent } from '../../../redux/features/studentSlice';
+import { Confirmation, Loading } from 'common/Modal';
+import { deleteStudent } from 'redux/features/studentSlice';
 
 export default function DeleteStudent({ student }) {
     const dispatch = useDispatch();

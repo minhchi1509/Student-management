@@ -2,7 +2,7 @@ import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, IconButton } from "@mui/material"
 import CloseIcon from '@mui/icons-material/Close'
 
-import { BlueButton, GrayButton } from "../Button";
+import { BlueButton, GrayButton } from "common/Button";
 
 const Confirmation = forwardRef((props, ref) => {
     const { title, content, handleAction } = props;

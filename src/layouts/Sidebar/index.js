@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 
-import Logo from '../../assets/images/LogoPTIT.png';
-import configs from '../../configs';
-import { MenuItem, CollapsibleMenuItem, Darkmode, Logout } from './components';
+import Logo from 'assets/images/LogoPTIT.png'
+import configs from 'configs'
+import { MenuItem, CollapsibleMenuItem, Darkmode, Logout } from './components'
 
 export default function Sidebar() {
     return (

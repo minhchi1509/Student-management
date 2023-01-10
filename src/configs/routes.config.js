@@ -1,7 +1,7 @@
-import Signup from "../page/Signup"
-import Login from "../page/Login"
-import Home from "../page/Home"
-import EditProfile from "../page/EditProfile"
+import Signup from "page/Signup"
+import Login from "page/Login"
+import Home from "page/Home"
+import EditProfile from "page/EditProfile"
 
 const routes = {
     publicRoutes: [

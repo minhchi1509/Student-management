@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Tippy from '@tippyjs/react/headless';
 import { useNavigate } from 'react-router-dom';
 
-import { setCurrentUser } from '../../../redux/features/userSlice';
-import { resetStudentList } from '../../../redux/features/studentSlice';
-import { Confirmation } from '../../../common/Modal';
+import { setCurrentUser } from 'redux/features/userSlice';
+import { resetStudentList } from 'redux/features/studentSlice';
+import { Confirmation } from 'common/Modal';
 
 export default function Logout() {
     const [openPopper, setOpenPopper] = useState(false);

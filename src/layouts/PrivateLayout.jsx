@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import Sidebar from './Sidebar';
-import { setCurrentUser } from '../redux/features/userSlice';
-import { getStudentList } from '../redux/features/studentSlice';
-import { Loading } from '../common/Modal';
+import { setCurrentUser } from 'redux/features/userSlice';
+import { getStudentList } from 'redux/features/studentSlice';
+import { Loading } from 'common/Modal';
 
 export default function PrivateLayout() {
     const [loading, setLoading] = useState(false);

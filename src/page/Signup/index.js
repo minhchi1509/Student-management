@@ -5,10 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Grid, Box, Divider, Paper, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { FormInput, DatePicker, FormSelectRadio } from '../../common/FormUI';
-import { register } from '../../redux/features/userSlice';
-import { GreenButton } from '../../common/Button';
-import { Notification } from '../../common/Modal';
+import { FormInput, DatePicker, FormSelectRadio } from 'common/FormUI';
+import { register } from 'redux/features/userSlice';
+import { GreenButton } from 'common/Button';
+import { Notification } from 'common/Modal';
 
 const INITIAL_FORM_STATE = {
     firstName: '',

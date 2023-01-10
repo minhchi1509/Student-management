@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
-import DefaultAvt from '../../assets/images/defaultAvt.png';
-import { FormInput, DatePicker, FormSelectRadio } from '../../common/FormUI';
-import { editUser, getAllUsers } from '../../redux/features/userSlice';
-import { BlueButton, GrayButton, PurpleButton, RedButton } from '../../common/Button';
-import { Notification } from '../../common/Modal';
+import DefaultAvt from 'assets/images/defaultAvt.png';
+import { FormInput, DatePicker, FormSelectRadio } from 'common/FormUI';
+import { editUser } from 'redux/features/userSlice';
+import { BlueButton, GrayButton, PurpleButton, RedButton } from 'common/Button';
+import { Notification } from 'common/Modal';
 
 export default function EditProfile() {
     const notificationRef = useRef(null);

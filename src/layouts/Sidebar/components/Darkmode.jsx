@@ -4,7 +4,7 @@ import { Button, styled, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/m
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
 
-import { toggleMode } from '../../../redux/features/modeSlice';
+import { toggleMode } from 'redux/features/modeSlice';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     '& .MuiToggleButtonGroup-grouped': {

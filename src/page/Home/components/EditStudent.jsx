@@ -4,8 +4,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import { useDispatch } from 'react-redux';
 
 import FormModal from './FormModal';
-import { getStudentCodeTitle } from '../../../utils';
-import { editStudent } from '../../../redux/features/studentSlice';
+import { getStudentCodeTitle } from 'utils';
+import { editStudent } from 'redux/features/studentSlice';
 
 
 export default function EditStudent({ student }) {
@@ -30,7 +30,7 @@ export default function EditStudent({ student }) {
             </Tooltip>
             <FormModal
                 ref={formModalRef}
-                type='search'
+                type='edit'
                 title='Chỉnh sửa thông tin sinh viên'
                 buttonName='Cập nhật'
                 student={student}

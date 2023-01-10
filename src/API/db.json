@@ -91,20 +91,8 @@
       "id": 6
     },
     {
-      "fullName": "Hello World12345678910",
+      "fullName": "MingYang Deng",
       "gender": "Nam",
-      "dateOfBirth": "2006-01-19T17:00:00.000Z",
-      "address": "TP. Hồ Chí Minh",
-      "email": "helloworld@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCCN123",
-      "majors": "Công nghệ thông tin",
-      "uid": 1,
-      "id": 8
-    },
-    {
-      "fullName": "iukhjukhjukhj",
-      "gender": "Khác",
       "dateOfBirth": "2023-01-01T17:00:00.000Z",
       "address": "Cao Bằng",
       "email": "gfdgf@gmial.com",
