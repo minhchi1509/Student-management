@@ -55,30 +55,6 @@
       "id": 2
     },
     {
-      "fullName": "Phạm Bình Minh",
-      "gender": "Khác",
-      "dateOfBirth": "2023-01-02T17:00:00.000Z",
-      "address": "Quảng Nam",
-      "email": "phambinhminh@gmail.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCKT125",
-      "majors": "Kế toán",
-      "uid": 1,
-      "id": 3
-    },
-    {
-      "fullName": "Phạm Thế Anh",
-      "gender": "Nữ",
-      "dateOfBirth": "2002-01-07T12:56:37.350Z",
-      "address": "Bắc Ninh",
-      "email": "theanh123@gmail.com",
-      "schoolYear": "2022",
-      "studentCode": "B22DCMR125",
-      "majors": "Marketing",
-      "uid": 1,
-      "id": 4
-    },
-    {
       "fullName": "Phan Anh Quốc",
       "gender": "Nam",
       "dateOfBirth": "2002-01-23T13:04:53.000Z",
@@ -149,6 +125,18 @@
       "majors": "Công nghệ đa phương tiện",
       "uid": 1,
       "id": 13
+    },
+    {
+      "fullName": "Tran Ngoc Anh Khoa",
+      "gender": "Nam",
+      "dateOfBirth": "2023-01-03T17:00:00.000Z",
+      "address": "Cà Mau",
+      "email": "khoatran@gmail.com",
+      "schoolYear": "2021",
+      "studentCode": "B21DCMR584",
+      "majors": "Marketing",
+      "uid": 1,
+      "id": 14
     }
   ]
 }

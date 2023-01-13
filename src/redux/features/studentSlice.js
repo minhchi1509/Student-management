@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import dayjs from 'dayjs';
 import axios from "axios";
 
 export const getStudentList = createAsyncThunk('student/getStudentList', async (value) => {
@@ -31,10 +32,37 @@ const studentSlice = createSlice({
     initialState: {
         loading: false,
         studentList: [],
+        isFiltered: false,
+        filteredStudentList: [],
     },
     reducers: {
         resetStudentList: (state) => {
             state.studentList = [];
+        },
+        filterStudentList: (state, action) => {
+            const searchInformation = Object.fromEntries(Object.entries(action.payload).filter(([key, value]) => Boolean(value)));
+            if (Object.keys(searchInformation).length > 0) {
+                state.isFiltered = true;
+                state.filteredStudentList = state.studentList.filter(student => {
+                    let isSatisfied = true;
+                    for (const key of Object.keys(searchInformation)) {
+                        if (key === 'dateOfBirth') {
+                            if (dayjs(student[key]).format('DD/MM/YYYY') !== dayjs(searchInformation[key]).format('DD/MM/YYYY')) {
+                                isSatisfied = false;
+                            }
+                        }
+                        else {
+                            if (!student[key].includes(searchInformation[key])) {
+                                isSatisfied = false;
+                            }
+                        }
+                    }
+                    return isSatisfied;
+                })
+            }
+        },
+        clearSearch: (state) => {
+            state.isFiltered = false;
         }
     },
     extraReducers: (builder) => {
@@ -70,4 +98,4 @@ const studentSlice = createSlice({
 })
 
 export default studentSlice.reducer;
-export const { resetStudentList } = studentSlice.actions;
+export const { resetStudentList, filterStudentList, clearSearch } = studentSlice.actions;

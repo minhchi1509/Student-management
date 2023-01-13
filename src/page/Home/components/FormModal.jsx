@@ -28,6 +28,13 @@ const StudentCodeInput = () => {
                 '& .MuiFormHelperText-root': {
                     marginLeft: '3px'
                 },
+                '& .MuiOutlinedInput-root': {
+                    '&.Mui-error': {
+                        '& fieldset': {
+                            borderColor: 'red',
+                        }
+                    }
+                }
             }}
             {...field}
             name='studentCode'
@@ -37,8 +44,9 @@ const StudentCodeInput = () => {
             InputProps={{
                 startAdornment: <InputAdornment position='start'>{textAdorment}</InputAdornment>
             }}
+            disabled={!schoolYear || !majors}
             error={meta && meta.touched && meta.error}
-            helperText={meta && meta.touched && meta.error ? meta.error : null}
+            helperText={(!schoolYear || !majors) ? 'Vui lòng chọn ngành học và khóa trước khi điền' : (meta && meta.touched && meta.error ? meta.error : null)}
         />
     )
 }

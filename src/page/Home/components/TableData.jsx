@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Pagination, Paper, Stack, styled, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs';
 
 import DeleteStudent from './DeleteStudent';
 import EditStudent from './EditStudent';
+import { RedButton } from 'common/Button';
+import { clearSearch } from 'redux/features/studentSlice';
 
 const StyledTable = styled(Table)(({ theme }) => ({
     '& .MuiTableHead-root': {
@@ -28,8 +30,10 @@ const StyledTable = styled(Table)(({ theme }) => ({
 }))
 
 export default function TableData() {
+    const dispatch = useDispatch();
     const [page, setPage] = useState(1);
-    const { studentList } = useSelector(state => state.student);
+    const { studentList, isFiltered, filteredStudentList } = useSelector(state => state.student);
+    const renderedList = isFiltered ? filteredStudentList : studentList;
 
     const handlePageChange = (event, newPage) => {
         setPage(newPage);
@@ -63,25 +67,25 @@ export default function TableData() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {studentList
+                        {renderedList
                             ?.slice((page - 1) * 5, page * 5)
-                            ?.map((student, index) => (
+                            ?.map((item, index) => (
                                 <TableRow key={index}>
                                     <TableCell align='left'>{5 * (page - 1) + index + 1}</TableCell>
-                                    <TableCell align='left'>{student.fullName}</TableCell>
+                                    <TableCell align='left'>{item.fullName}</TableCell>
                                     <TableCell align='left'>
-                                        {dayjs(student.dateOfBirth).format('DD/MM/YYYY')}
+                                        {dayjs(item.dateOfBirth).format('DD/MM/YYYY')}
                                     </TableCell>
-                                    <TableCell align='left'>{student.gender}</TableCell>
-                                    <TableCell align='left'>{student.address}</TableCell>
-                                    <TableCell align='left'>{student.email}</TableCell>
-                                    <TableCell align='left'>{student.studentCode}</TableCell>
-                                    <TableCell align='left'>{student.schoolYear}</TableCell>
-                                    <TableCell align='left'>{student.majors}</TableCell>
+                                    <TableCell align='left'>{item.gender}</TableCell>
+                                    <TableCell align='left'>{item.address}</TableCell>
+                                    <TableCell align='left'>{item.email}</TableCell>
+                                    <TableCell align='left'>{item.studentCode}</TableCell>
+                                    <TableCell align='left'>{item.schoolYear}</TableCell>
+                                    <TableCell align='left'>{item.majors}</TableCell>
                                     <TableCell align='right' sx={{ p: 0 }}>
                                         <Stack direction='row'>
-                                            <DeleteStudent student={student} />
-                                            <EditStudent student={student} />
+                                            <DeleteStudent student={item} />
+                                            <EditStudent student={item} />
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
@@ -89,9 +93,16 @@ export default function TableData() {
                     </TableBody>
                 </StyledTable>
             </TableContainer>
-            <Stack direction='row' justifyContent='flex-end' marginTop={2}>
+            <Stack direction='row' justifyContent='flex-end' marginTop={2} spacing={2}>
+                <RedButton
+                    size='small'
+                    className='p-2'
+                    onClick={() => dispatch(clearSearch())}
+                >
+                    Bỏ chế độ tìm kiếm
+                </RedButton>
                 <Pagination
-                    count={Math.ceil(studentList.length / 5)}
+                    count={Math.ceil(renderedList.length / 5)}
                     page={page}
                     onChange={handlePageChange}
                     color='primary'

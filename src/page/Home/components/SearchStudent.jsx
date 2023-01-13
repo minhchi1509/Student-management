@@ -1,14 +1,19 @@
 import React, { useRef } from 'react'
+import { useDispatch } from 'react-redux';
 import { OutlinedInput, InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 
 import FormModal from './FormModal';
+import { filterStudentList } from 'redux/features/studentSlice';
+
 
 export default function SearchStudent() {
     const formModalRef = useRef(null);
+    const dispatch = useDispatch();
 
     const handleSearchStudent = (values) => {
-        console.log(values);
+        dispatch(filterStudentList(values));
+        formModalRef.current.close();
     }
 
     return (
