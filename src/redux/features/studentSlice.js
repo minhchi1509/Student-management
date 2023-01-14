@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import dayjs from 'dayjs';
 import axios from "axios";
+
+import { filterStudents } from "utils";
 
 export const getStudentList = createAsyncThunk('student/getStudentList', async (value) => {
     const { userId } = value;
@@ -33,6 +34,7 @@ const studentSlice = createSlice({
         loading: false,
         studentList: [],
         isFiltered: false,
+        filterInformation: null,
         filteredStudentList: [],
     },
     reducers: {
@@ -40,25 +42,11 @@ const studentSlice = createSlice({
             state.studentList = [];
         },
         filterStudentList: (state, action) => {
-            const searchInformation = Object.fromEntries(Object.entries(action.payload).filter(([key, value]) => Boolean(value)));
-            if (Object.keys(searchInformation).length > 0) {
+            const { haveKeyFilter, filteredStudents } = filterStudents(action.payload, state.studentList);
+            if (haveKeyFilter) {
                 state.isFiltered = true;
-                state.filteredStudentList = state.studentList.filter(student => {
-                    let isSatisfied = true;
-                    for (const key of Object.keys(searchInformation)) {
-                        if (key === 'dateOfBirth') {
-                            if (dayjs(student[key]).format('DD/MM/YYYY') !== dayjs(searchInformation[key]).format('DD/MM/YYYY')) {
-                                isSatisfied = false;
-                            }
-                        }
-                        else {
-                            if (!student[key].includes(searchInformation[key])) {
-                                isSatisfied = false;
-                            }
-                        }
-                    }
-                    return isSatisfied;
-                })
+                state.filterInformation = action.payload;
+                state.filteredStudentList = filteredStudents;
             }
         },
         clearSearch: (state) => {
@@ -84,6 +72,12 @@ const studentSlice = createSlice({
             })
             .addCase(deleteStudent.fulfilled, (state, action) => {
                 state.studentList = action.payload;
+                if (state.isFiltered) {
+                    const { haveKeyFilter, filteredStudents } = filterStudents(state.filterInformation, state.studentList);
+                    if (haveKeyFilter) {
+                        state.filteredStudentList = filteredStudents;
+                    }
+                }
                 state.loading = false;
             })
             //Edit student
@@ -92,6 +86,12 @@ const studentSlice = createSlice({
             })
             .addCase(editStudent.fulfilled, (state, action) => {
                 state.studentList = action.payload;
+                if (state.isFiltered) {
+                    const { haveKeyFilter, filteredStudents } = filterStudents(state.filterInformation, state.studentList);
+                    if (haveKeyFilter) {
+                        state.filteredStudentList = filteredStudents;
+                    }
+                }
                 state.loading = false;
             })
     }

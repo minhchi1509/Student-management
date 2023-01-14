@@ -55,30 +55,6 @@
       "id": 2
     },
     {
-      "fullName": "Phan Anh Quốc",
-      "gender": "Nam",
-      "dateOfBirth": "2002-01-23T13:04:53.000Z",
-      "address": "Thanh Hóa",
-      "email": "paquoc@hotmail.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCTM230",
-      "majors": "Thương mại điện tử",
-      "uid": 1,
-      "id": 6
-    },
-    {
-      "fullName": "MingYang Deng",
-      "gender": "Nam",
-      "dateOfBirth": "2023-01-01T17:00:00.000Z",
-      "address": "Cao Bằng",
-      "email": "gfdgf@gmial.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCMR223",
-      "majors": "Marketing",
-      "uid": 1,
-      "id": 9
-    },
-    {
       "fullName": "kklhjkljlhjkmhjmghmnh",
       "gender": "Nam",
       "dateOfBirth": "2023-01-01T17:00:00.000Z",
@@ -115,18 +91,6 @@
       "id": 12
     },
     {
-      "fullName": "fdsfdsfvcbvcbnbvnbvnbvn",
-      "gender": "Khác",
-      "dateOfBirth": "2023-01-01T17:00:00.000Z",
-      "address": "Đắk Lắk",
-      "email": "10493rfew@gmail.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCPT212",
-      "majors": "Công nghệ đa phương tiện",
-      "uid": 1,
-      "id": 13
-    },
-    {
       "fullName": "Tran Ngoc Anh Khoa",
       "gender": "Nam",
       "dateOfBirth": "2023-01-03T17:00:00.000Z",
@@ -137,6 +101,18 @@
       "majors": "Marketing",
       "uid": 1,
       "id": 14
+    },
+    {
+      "fullName": "Ri Đỗ",
+      "gender": "Nam",
+      "dateOfBirth": "2001-01-18T14:52:07.000Z",
+      "address": "Quảng Ninh",
+      "email": "rido@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCMR111",
+      "majors": "Marketing",
+      "uid": 1,
+      "id": 15
     }
   ]
 }
