@@ -7,6 +7,7 @@ import DeleteStudent from './DeleteStudent';
 import EditStudent from './EditStudent';
 import { RedButton } from 'common/Button';
 import { clearSearch } from 'redux/features/studentSlice';
+import configs from 'configs';
 
 const StyledTable = styled(Table)(({ theme }) => ({
     '& .MuiTableHead-root': {
@@ -55,14 +56,9 @@ export default function TableData() {
                     <TableHead>
                         <TableRow>
                             <TableCell>STT</TableCell>
-                            <TableCell align='left'>Họ và tên</TableCell>
-                            <TableCell align='left'>Ngày sinh</TableCell>
-                            <TableCell align='left'>Giới tính</TableCell>
-                            <TableCell align='left'>Địa chỉ</TableCell>
-                            <TableCell align='left'>Email</TableCell>
-                            <TableCell align='left'>Mã sinh viên</TableCell>
-                            <TableCell align='left'>Khóa</TableCell>
-                            <TableCell align='left'>Ngành</TableCell>
+                            {configs.headTableColumns.map(column =>
+                                <TableCell align='left'>{column.label}</TableCell>)
+                            }
                             <TableCell align='left'>Hành động</TableCell>
                         </TableRow>
                     </TableHead>
@@ -72,16 +68,11 @@ export default function TableData() {
                             ?.map((item, index) => (
                                 <TableRow key={index}>
                                     <TableCell align='left'>{5 * (page - 1) + index + 1}</TableCell>
-                                    <TableCell align='left'>{item.fullName}</TableCell>
-                                    <TableCell align='left'>
-                                        {dayjs(item.dateOfBirth).format('DD/MM/YYYY')}
-                                    </TableCell>
-                                    <TableCell align='left'>{item.gender}</TableCell>
-                                    <TableCell align='left'>{item.address}</TableCell>
-                                    <TableCell align='left'>{item.email}</TableCell>
-                                    <TableCell align='left'>{item.studentCode}</TableCell>
-                                    <TableCell align='left'>{item.schoolYear}</TableCell>
-                                    <TableCell align='left'>{item.majors}</TableCell>
+                                    {
+                                        configs.headTableColumns.map(column =>
+                                            <TableCell align='left'>{column.name === 'dateOfBirth' ? dayjs(item[column.name]).format('DD/MM/YYYY') : item[column.name]}</TableCell>
+                                        )
+                                    }
                                     <TableCell align='right' sx={{ p: 0 }}>
                                         <Stack direction='row'>
                                             <DeleteStudent student={item} />
@@ -99,7 +90,7 @@ export default function TableData() {
                     className='p-2'
                     onClick={() => dispatch(clearSearch())}
                 >
-                    Bỏ chế độ tìm kiếm
+                    Tắt chế độ tìm kiếm
                 </RedButton>
                 <Pagination
                     count={Math.ceil(renderedList.length / 5)}

@@ -67,18 +67,6 @@
       "id": 10
     },
     {
-      "fullName": "dsfdsf",
-      "gender": "Nam",
-      "dateOfBirth": "2023-01-05T17:00:00.000Z",
-      "address": "Đắk Lắk",
-      "email": "fdsfdsf@x.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCQT908",
-      "majors": "Quản trị kinh doanh",
-      "uid": 1,
-      "id": 11
-    },
-    {
       "fullName": "fdsfdsffdsfdfvd",
       "gender": "Nam",
       "dateOfBirth": "2009-01-12T13:18:22.000Z",
@@ -103,16 +91,88 @@
       "id": 14
     },
     {
-      "fullName": "Ri Đỗ",
+      "fullName": "ptit1",
       "gender": "Nam",
-      "dateOfBirth": "2001-01-18T14:52:07.000Z",
+      "dateOfBirth": "2023-01-01T17:00:00.000Z",
       "address": "Quảng Ninh",
-      "email": "rido@gmail.com",
+      "email": "ptit1@gmail.com",
       "schoolYear": "2020",
-      "studentCode": "B20DCMR111",
+      "studentCode": "B20DCQT478",
+      "majors": "Quản trị kinh doanh",
+      "uid": 1,
+      "id": 16
+    },
+    {
+      "fullName": "Harry Maguire",
+      "gender": "Nam",
+      "dateOfBirth": "1993-01-14T17:00:00.000Z",
+      "address": "Đắk Lắk",
+      "email": "hm@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCQT147",
+      "majors": "Quản trị kinh doanh",
+      "uid": 1,
+      "id": 17
+    },
+    {
+      "fullName": "Lê Thu Phương",
+      "gender": "Nữ",
+      "dateOfBirth": "2002-01-05T15:41:54.000Z",
+      "address": "Hà Nội",
+      "email": "phuongle@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCMR247",
       "majors": "Marketing",
       "uid": 1,
-      "id": 15
+      "id": 18
+    },
+    {
+      "fullName": "Trần Thị Thu",
+      "gender": "Nữ",
+      "dateOfBirth": "2001-01-15T15:43:07.327Z",
+      "address": "Bắc Ninh",
+      "email": "thutran@hotmail.com",
+      "schoolYear": "2021",
+      "studentCode": "B21DCTM997",
+      "majors": "Thương mại điện tử",
+      "uid": 1,
+      "id": 19
+    },
+    {
+      "fullName": "ptit2",
+      "gender": "Khác",
+      "dateOfBirth": "2001-01-15T15:43:49.076Z",
+      "address": "Hưng Yên",
+      "email": "ptit2@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCKT478",
+      "majors": "Kế toán",
+      "uid": 1,
+      "id": 20
+    },
+    {
+      "fullName": "ptit3Edit",
+      "gender": "Nam",
+      "dateOfBirth": "2002-01-19T15:44:22.000Z",
+      "address": "Khánh Hòa",
+      "email": "ptit3edit@gmail.com",
+      "schoolYear": "2021",
+      "studentCode": "B21DCAT201",
+      "majors": "An toàn thông tin",
+      "uid": 1,
+      "id": 21
+    },
+    {
+      "fullName": "messi",
+      "gender": "Khác",
+      "dateOfBirth": "2001-01-17T15:57:08.000Z",
+      "address": "Thái Bình",
+      "email": "messi@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCPT578",
+      "majors": "Công nghệ đa phương tiện",
+      "uid": 1,
+      "id": 22
     }
   ]
 }

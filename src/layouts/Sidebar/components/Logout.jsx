@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, IconButton } from '@mui/material';
+import { Avatar, ListItem, ListItemButton, ListItemIcon, ListItemAvatar, ListItemText, Typography, Paper, IconButton, Tooltip } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useDispatch, useSelector } from 'react-redux';
 import Tippy from '@tippyjs/react/headless';
@@ -70,9 +70,11 @@ export default function Logout() {
                             {currentUser?.lastName}
                         </Typography>
                     </ListItemText>
-                    <IconButton className='hidden lg:flex' onClick={() => confirmationRef.current.show()}>
-                        <LogoutIcon />
-                    </IconButton>
+                    <Tooltip title='Đăng xuất' disableInteractive>
+                        <IconButton className='hidden lg:flex' onClick={() => confirmationRef.current.show()}>
+                            <LogoutIcon />
+                        </IconButton>
+                    </Tooltip >
                 </ListItem>
             </Tippy>
             <Confirmation
