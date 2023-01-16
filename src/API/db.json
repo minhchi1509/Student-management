@@ -2,7 +2,7 @@
   "users": [
     {
       "firstName": "Nguyễn",
-      "lastName": "Chí",
+      "lastName": "Bảo Anh",
       "gender": "Nam",
       "email": "minhchico300kc@gmail.com",
       "password": "123456789",
@@ -55,26 +55,14 @@
       "id": 2
     },
     {
-      "fullName": "kklhjkljlhjkmhjmghmnh",
+      "fullName": "Riku Kawasaki",
       "gender": "Nam",
-      "dateOfBirth": "2023-01-01T17:00:00.000Z",
-      "address": "Cao Bằng",
-      "email": "iqpw2@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCKT654",
-      "majors": "Kế toán",
-      "uid": 1,
-      "id": 10
-    },
-    {
-      "fullName": "fdsfdsffdsfdfvd",
-      "gender": "Nam",
-      "dateOfBirth": "2009-01-12T13:18:22.000Z",
-      "address": "Cần Thơ",
-      "email": "dsfcdscvxvcbc@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCPT432",
-      "majors": "Công nghệ đa phương tiện",
+      "dateOfBirth": "1998-02-13T13:18:22.000Z",
+      "address": "Hải Phòng",
+      "email": "maroonrk@gmail.com",
+      "schoolYear": "2021",
+      "studentCode": "B21DCAT432",
+      "majors": "An toàn thông tin",
       "uid": 1,
       "id": 12
     },
@@ -89,18 +77,6 @@
       "majors": "Marketing",
       "uid": 1,
       "id": 14
-    },
-    {
-      "fullName": "ptit1",
-      "gender": "Nam",
-      "dateOfBirth": "2023-01-01T17:00:00.000Z",
-      "address": "Quảng Ninh",
-      "email": "ptit1@gmail.com",
-      "schoolYear": "2020",
-      "studentCode": "B20DCQT478",
-      "majors": "Quản trị kinh doanh",
-      "uid": 1,
-      "id": 16
     },
     {
       "fullName": "Harry Maguire",
@@ -163,16 +139,28 @@
       "id": 21
     },
     {
-      "fullName": "messi",
-      "gender": "Khác",
-      "dateOfBirth": "2001-01-17T15:57:08.000Z",
-      "address": "Thái Bình",
-      "email": "messi@gmail.com",
-      "schoolYear": "2019",
-      "studentCode": "B19DCPT578",
-      "majors": "Công nghệ đa phương tiện",
+      "fullName": "ptit5",
+      "gender": "Nữ",
+      "dateOfBirth": "2023-01-02T17:00:00.000Z",
+      "address": "Quảng Ninh",
+      "email": "ptit5@gmail.com",
+      "schoolYear": "2020",
+      "studentCode": "B20DCKT875",
+      "majors": "Kế toán",
       "uid": 1,
       "id": 22
+    },
+    {
+      "fullName": "òprfp",
+      "gender": "Nữ",
+      "dateOfBirth": "2005-01-13T06:30:00.000Z",
+      "address": "Cao Bằng",
+      "email": "eodpwr@gmail.com",
+      "schoolYear": "2019",
+      "studentCode": "B19DCQT409",
+      "majors": "Quản trị kinh doanh",
+      "uid": 1,
+      "id": 23
     }
   ]
 }

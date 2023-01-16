@@ -70,7 +70,9 @@ export default function TableData() {
                                     <TableCell align='left'>{5 * (page - 1) + index + 1}</TableCell>
                                     {
                                         configs.headTableColumns.map(column =>
-                                            <TableCell align='left'>{column.name === 'dateOfBirth' ? dayjs(item[column.name]).format('DD/MM/YYYY') : item[column.name]}</TableCell>
+                                            <TableCell align='left'>
+                                                {column.name === 'dateOfBirth' ? dayjs(item[column.name]).format('DD/MM/YYYY') : item[column.name]}
+                                            </TableCell>
                                         )
                                     }
                                     <TableCell align='right' sx={{ p: 0 }}>
