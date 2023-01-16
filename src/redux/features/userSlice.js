@@ -2,18 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAllUsers = createAsyncThunk('user/getAllUsers', async () => {
-    const { data } = await axios.get('http://localhost:5000/users');
+    const { data } = await axios.get(`${process.env.REACT_APP_API_KEY}/users`);
     return data;
 })
 
 export const register = createAsyncThunk('user/register', async (value) => {
-    const { data } = await axios.post('http://localhost:5000/users', value)
+    const { data } = await axios.post(`${process.env.REACT_APP_API_KEY}/users`, value)
     return data;
 })
 
 export const editUser = createAsyncThunk('user/editUser', async (value) => {
     const { id, information } = value;
-    const { data } = await axios.patch(`http://localhost:5000/users/${id}`, information);
+    const { data } = await axios.patch(`${process.env.REACT_APP_API_KEY}/users/${id}`, information);
     return data;
 })
 

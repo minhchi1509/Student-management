@@ -5,26 +5,26 @@ import { filterStudents } from "utils";
 
 export const getStudentList = createAsyncThunk('student/getStudentList', async (value) => {
     const { userId } = value;
-    const { data } = await axios.get(`http://localhost:5000/students?uid=${userId}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_API_KEY}/students?uid=${userId}`);
     return data;
 })
 
 export const addNewStudent = createAsyncThunk('student/addNewStudent', async (value) => {
-    const { data } = await axios.post('http://localhost:5000/students', value)
+    const { data } = await axios.post(`${process.env.REACT_APP_API_KEY}/students`, value)
     return data;
 })
 
 export const deleteStudent = createAsyncThunk('student/deleteStudent', async (value) => {
     const { uid, id } = value;
-    await axios.delete(`http://localhost:5000/students/${id}`);
-    const { data } = await axios.get(`http://localhost:5000/students?uid=${uid}`);
+    await axios.delete(`${process.env.REACT_APP_API_KEY}/students/${id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_API_KEY}/students?uid=${uid}`);
     return data;
 })
 
 export const editStudent = createAsyncThunk('student/editStudent', async (value) => {
     const { id, uid } = value;
-    await axios.patch(`http://localhost:5000/students/${id}`, value);
-    const { data } = await axios.get(`http://localhost:5000/students?uid=${uid}`);
+    await axios.patch(`${process.env.REACT_APP_API_KEY}/students/${id}`, value);
+    const { data } = await axios.get(`${process.env.REACT_APP_API_KEY}/students?uid=${uid}`);
     return data;
 })
 
