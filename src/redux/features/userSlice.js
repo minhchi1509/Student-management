@@ -7,7 +7,7 @@ export const getAllUsers = createAsyncThunk('user/getAllUsers', async () => {
 })
 
 export const register = createAsyncThunk('user/register', async (value) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_API_KEY}/users`, value)
+    const { data } = await axios.post(`${process.env.REACT_APP_API_KEY}/users`, value);
     return data;
 })
 
@@ -40,6 +40,7 @@ const userSlice = createSlice({
                 state.loading = true;
             })
             .addCase(register.fulfilled, (state, action) => {
+                console.log(action.payload.token);
                 state.allUsers.push(action.payload);
                 state.loading = false;
             })
