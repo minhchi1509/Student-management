@@ -98,7 +98,7 @@ export default function Login() {
                     className="w-48"
                     onClick={() => navigate("/signup")}
                   >
-                    Đăng ký
+                    Đăng kýadsfdf
                   </GreenButton>
                 </Stack>
               </Box>
